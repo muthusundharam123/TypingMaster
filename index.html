@@ -28,15 +28,15 @@
     --red: #ff6f7d;
     --yellow: #f5c96b;
 
-    --shadow: rgba(0, 0, 0, 0.25);
+    --shadow: rgba(0,0,0,.25);
 }
 
-
 /* =====================================================
-   THEME 2 - CLEAN PAPER
+   THEMES
 ===================================================== */
 
 body.theme-paper {
+
     --bg: #f4f5f7;
     --panel: #ffffff;
     --panel2: #f0f1f4;
@@ -52,15 +52,11 @@ body.theme-paper {
     --red: #dc3545;
     --yellow: #c58a00;
 
-    --shadow: rgba(0, 0, 0, 0.08);
+    --shadow: rgba(0,0,0,.08);
 }
 
-
-/* =====================================================
-   THEME 3 - FOREST
-===================================================== */
-
 body.theme-forest {
+
     --bg: #0d1512;
     --panel: #14201b;
     --panel2: #192821;
@@ -76,13 +72,16 @@ body.theme-forest {
     --red: #ef7373;
     --yellow: #e2c56c;
 
-    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow: rgba(0,0,0,.3);
 }
 
+/* =====================================================
+   BODY
+===================================================== */
 
 body {
-    margin: 0;
 
+    margin: 0;
     min-height: 100vh;
 
     background:
@@ -108,43 +107,45 @@ body {
         sans-serif;
 
     transition:
-        background 0.25s ease,
-        color 0.25s ease;
+        background .25s ease,
+        color .25s ease;
 }
-
 
 button {
     font-family: inherit;
 }
 
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
 
 /* =====================================================
    APP
 ===================================================== */
 
 .app {
-    width: min(1180px, 94%);
 
+    width: min(1180px,94%);
     margin: auto;
 }
-
 
 /* =====================================================
    HEADER
 ===================================================== */
 
 header {
+
     min-height: 82px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    gap: 25px;
+    gap: 20px;
 
-    border-bottom: 1px solid
+    border-bottom:
+        1px solid
         color-mix(
             in srgb,
             var(--border) 60%,
@@ -152,59 +153,52 @@ header {
         );
 }
 
-
 .logo {
+
     font-size: 21px;
-
     font-weight: 800;
-
-    white-space: nowrap;
 }
-
 
 .logo span {
     color: var(--accent);
 }
 
+.header-right {
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
 .nav {
+
     display: flex;
-
     align-items: center;
-
     gap: 22px;
 }
 
-
 .nav-link {
+
     color: var(--muted);
-
     font-size: 13px;
-
     cursor: pointer;
 
-    transition: 0.2s;
+    transition: .2s;
 }
-
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--text);
-}
 
-
-.nav-link.active {
     color: var(--accent);
 }
 
-
 /* =====================================================
-   THEME SELECTOR
+   THEMES
 ===================================================== */
 
 .theme-selector {
-    display: flex;
 
+    display: flex;
     align-items: center;
 
     gap: 4px;
@@ -213,13 +207,15 @@ header {
 
     background: var(--panel);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 9px;
 }
 
-
 .theme-btn {
+
     border: 0;
 
     background: transparent;
@@ -233,81 +229,76 @@ header {
     cursor: pointer;
 
     font-size: 12px;
-
-    transition: 0.2s;
 }
-
 
 .theme-btn:hover {
     color: var(--text);
 }
 
-
 .theme-btn.active {
+
     color: var(--text);
 
     background: var(--panel2);
 
     box-shadow:
-        0 2px 8px var(--shadow);
+        0 2px 8px
+        var(--shadow);
 }
 
-
 .best-score {
+
     padding: 8px 12px;
 
     background: var(--panel);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 8px;
 
     font-size: 12px;
 
     color: var(--muted);
-
-    white-space: nowrap;
 }
 
-
 .best-score strong {
+
     color: var(--yellow);
 
     margin-left: 4px;
 }
 
-
 /* =====================================================
-   PAGE
+   PAGES
 ===================================================== */
 
 .page {
     display: none;
 }
 
-
 .page.active {
     display: block;
 }
 
-
 main {
     padding: 50px 0 80px;
 }
-
 
 /* =====================================================
    TITLE
 ===================================================== */
 
 .top-title {
+
     text-align: center;
 
     margin-bottom: 38px;
 }
 
-
 .top-title h1 {
+
     margin: 0;
 
     font-size: 36px;
@@ -315,8 +306,8 @@ main {
     letter-spacing: -1.5px;
 }
 
-
 .top-title p {
+
     margin-top: 10px;
 
     color: var(--muted);
@@ -324,16 +315,15 @@ main {
     font-size: 14px;
 }
 
-
 /* =====================================================
    LIVE STATS
 ===================================================== */
 
 .live-stats {
+
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     gap: 38px;
@@ -341,22 +331,22 @@ main {
     margin-bottom: 28px;
 }
 
-
 .live-stat {
+
     text-align: center;
 
     min-width: 90px;
 }
 
-
 .live-stat .value {
+
     font-size: 31px;
 
     font-weight: 750;
 }
 
-
 .live-stat .label {
+
     margin-top: 4px;
 
     font-size: 10px;
@@ -368,13 +358,12 @@ main {
     text-transform: uppercase;
 }
 
-
 .live-stat.primary .value {
     color: var(--accent);
 }
 
-
 .stat-divider {
+
     width: 1px;
 
     height: 35px;
@@ -382,12 +371,12 @@ main {
     background: var(--border);
 }
 
-
 /* =====================================================
    CONTROLS
 ===================================================== */
 
 .controls {
+
     display: flex;
 
     justify-content: center;
@@ -399,8 +388,8 @@ main {
     margin-bottom: 28px;
 }
 
-
 .control {
+
     display: flex;
 
     align-items: center;
@@ -411,13 +400,15 @@ main {
 
     background: var(--panel);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 10px;
 }
 
-
 .pill {
+
     border: 0;
 
     background: transparent;
@@ -433,13 +424,12 @@ main {
     font-size: 12px;
 }
 
-
 .pill:hover {
     color: var(--text);
 }
 
-
 .pill.active {
+
     color: white;
 
     background: var(--accent);
@@ -453,12 +443,12 @@ main {
         );
 }
 
-
 /* =====================================================
    PROGRESS
 ===================================================== */
 
 .progress-track {
+
     height: 3px;
 
     width: 100%;
@@ -472,28 +462,30 @@ main {
     overflow: hidden;
 }
 
-
 .progress-bar {
+
     height: 100%;
 
     width: 0%;
 
     background: var(--accent);
 
-    transition: width 0.15s linear;
+    transition: width .15s linear;
 }
-
 
 /* =====================================================
    TYPING AREA
 ===================================================== */
 
 .typing-area {
+
     position: relative;
 
     background: var(--panel);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 18px;
 
@@ -504,13 +496,13 @@ main {
     cursor: text;
 
     transition:
-        border-color 0.2s,
-        box-shadow 0.2s,
-        background 0.25s;
+        border-color .2s,
+        box-shadow .2s,
+        background .25s;
 }
 
-
 .typing-area.focused {
+
     border-color:
         color-mix(
             in srgb,
@@ -528,8 +520,8 @@ main {
         0 20px 60px var(--shadow);
 }
 
-
 .text-display {
+
     max-width: 1000px;
 
     margin: auto;
@@ -538,27 +530,28 @@ main {
 
     line-height: 1.9;
 
-    color: color-mix(
-        in srgb,
-        var(--muted) 55%,
-        var(--panel)
-    );
+    color:
+        color-mix(
+            in srgb,
+            var(--muted) 55%,
+            var(--panel)
+        );
 
     user-select: none;
-}
 
+    word-break: normal;
+}
 
 .text-display span {
     position: relative;
 }
 
-
 .text-display span.correct {
     color: var(--green);
 }
 
-
 .text-display span.incorrect {
+
     color: var(--red);
 
     background:
@@ -569,13 +562,12 @@ main {
         );
 }
 
-
 .text-display span.current {
     color: var(--text);
 }
 
-
 .text-display span.current::before {
+
     content: "";
 
     position: absolute;
@@ -590,9 +582,9 @@ main {
 
     background: var(--accent);
 
-    animation: cursorBlink 1s infinite;
+    animation:
+        cursorBlink 1s infinite;
 }
-
 
 @keyframes cursorBlink {
 
@@ -607,8 +599,8 @@ main {
     }
 }
 
-
 .start-overlay {
+
     position: absolute;
 
     inset: 0;
@@ -624,8 +616,8 @@ main {
     padding-bottom: 25px;
 }
 
-
 .start-hint {
+
     color: var(--muted);
 
     font-size: 12px;
@@ -642,8 +634,9 @@ main {
     border-radius: 8px;
 }
 
-
+/* Hidden input, no virtual keyboard */
 #typingInput {
+
     position: absolute;
 
     opacity: 0;
@@ -653,14 +646,16 @@ main {
     width: 1px;
 
     height: 1px;
-}
 
+    left: -100px;
+}
 
 /* =====================================================
    BUTTONS
 ===================================================== */
 
 .actions {
+
     display: flex;
 
     justify-content: center;
@@ -670,8 +665,8 @@ main {
     margin-top: 24px;
 }
 
-
 .primary-btn {
+
     border: 0;
 
     background: var(--accent);
@@ -688,19 +683,23 @@ main {
 
     font-weight: 650;
 
-    transition: 0.2s;
+    transition: .2s;
 }
-
 
 .primary-btn:hover {
-    background: var(--accent-dark);
 
-    transform: translateY(-1px);
+    background:
+        var(--accent-dark);
+
+    transform:
+        translateY(-1px);
 }
 
-
 .secondary-btn {
-    border: 1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
 
     background: var(--panel);
 
@@ -715,17 +714,16 @@ main {
     font-size: 13px;
 }
 
-
 .secondary-btn:hover {
     color: var(--text);
 }
-
 
 /* =====================================================
    SHORTCUTS
 ===================================================== */
 
 .shortcuts {
+
     text-align: center;
 
     margin-top: 25px;
@@ -735,11 +733,13 @@ main {
     font-size: 11px;
 }
 
-
 kbd {
+
     padding: 3px 6px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 4px;
 
@@ -750,19 +750,21 @@ kbd {
     margin: 0 3px;
 }
 
-
 /* =====================================================
    RESULT
 ===================================================== */
 
 .result {
+
     display: none;
 
     margin-top: 35px;
 
     background: var(--panel);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 18px;
 
@@ -771,13 +773,12 @@ kbd {
     text-align: center;
 }
 
-
 .result.show {
     display: block;
 }
 
-
 .result-title {
+
     color: var(--muted);
 
     text-transform: uppercase;
@@ -787,8 +788,8 @@ kbd {
     letter-spacing: 2px;
 }
 
-
 .result-wpm {
+
     margin-top: 10px;
 
     font-size: 76px;
@@ -798,15 +799,15 @@ kbd {
     color: var(--accent);
 }
 
-
 .result-wpm small {
+
     font-size: 18px;
 
     color: var(--muted);
 }
 
-
 .personal-best {
+
     display: none;
 
     margin-top: 5px;
@@ -818,17 +819,16 @@ kbd {
     font-weight: 650;
 }
 
-
 .personal-best.show {
     display: block;
 }
 
-
 .result-grid {
+
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,1fr);
 
     gap: 10px;
 
@@ -837,19 +837,21 @@ kbd {
     max-width: 700px;
 }
 
-
 .result-card {
+
     background: var(--panel2);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 10px;
 
     padding: 18px 10px;
 }
 
-
 .result-card strong {
+
     display: block;
 
     font-size: 21px;
@@ -857,8 +859,8 @@ kbd {
     margin-bottom: 5px;
 }
 
-
 .result-card span {
+
     color: var(--muted);
 
     font-size: 10px;
@@ -866,12 +868,12 @@ kbd {
     text-transform: uppercase;
 }
 
-
 /* =====================================================
-   HISTORY
+   GENERAL SECTIONS
 ===================================================== */
 
 .section-title {
+
     margin-bottom: 8px;
 
     font-size: 30px;
@@ -879,8 +881,8 @@ kbd {
     letter-spacing: -1px;
 }
 
-
 .section-subtitle {
+
     margin-bottom: 30px;
 
     color: var(--muted);
@@ -888,8 +890,12 @@ kbd {
     font-size: 14px;
 }
 
+/* =====================================================
+   HISTORY
+===================================================== */
 
 .history-header {
+
     display: flex;
 
     align-items: center;
@@ -899,35 +905,39 @@ kbd {
     margin-bottom: 15px;
 }
 
-
 .history-table {
+
     width: 100%;
 
     border-collapse: collapse;
 
     background: var(--panel);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 14px;
 
     overflow: hidden;
 }
 
-
 .history-table th,
 .history-table td {
+
     padding: 15px;
 
-    border-bottom: 1px solid var(--border);
+    border-bottom:
+        1px solid
+        var(--border);
 
     text-align: left;
 
     font-size: 13px;
 }
 
-
 .history-table th {
+
     color: var(--muted);
 
     font-size: 10px;
@@ -939,25 +949,23 @@ kbd {
     background: var(--panel2);
 }
 
-
 .history-table tr:last-child td {
     border-bottom: 0;
 }
 
-
 .history-wpm {
+
     color: var(--accent);
 
     font-weight: 700;
 }
 
-
 .history-accuracy {
     color: var(--green);
 }
 
-
 .empty-state {
+
     padding: 60px 20px;
 
     text-align: center;
@@ -966,14 +974,17 @@ kbd {
 
     background: var(--panel);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 14px;
 }
 
-
 .danger-btn {
-    border: 1px solid
+
+    border:
+        1px solid
         color-mix(
             in srgb,
             var(--red) 30%,
@@ -993,35 +1004,47 @@ kbd {
     font-size: 12px;
 }
 
+.danger-btn:hover {
+
+    background:
+        color-mix(
+            in srgb,
+            var(--red) 8%,
+            transparent
+        );
+}
 
 /* =====================================================
    STATISTICS
 ===================================================== */
 
 .stats-grid {
+
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(3,1fr);
 
     gap: 15px;
 
     margin-bottom: 25px;
 }
 
-
 .stat-card {
+
     background: var(--panel);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 14px;
 
     padding: 24px;
 }
 
-
 .stat-card .number {
+
     font-size: 32px;
 
     font-weight: 750;
@@ -1029,8 +1052,8 @@ kbd {
     color: var(--accent);
 }
 
-
 .stat-card .label {
+
     margin-top: 6px;
 
     color: var(--muted);
@@ -1039,14 +1062,16 @@ kbd {
 
     text-transform: uppercase;
 
-    letter-spacing: 0.8px;
+    letter-spacing: .8px;
 }
 
-
 .chart-container {
+
     background: var(--panel);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 14px;
 
@@ -1055,8 +1080,8 @@ kbd {
     margin-top: 20px;
 }
 
-
 .chart-title {
+
     color: var(--muted);
 
     font-size: 12px;
@@ -1064,19 +1089,19 @@ kbd {
     margin-bottom: 15px;
 }
 
-
 canvas {
+
     width: 100%;
 
     height: 300px;
 }
-
 
 /* =====================================================
    FOOTER
 ===================================================== */
 
 footer {
+
     text-align: center;
 
     color: var(--muted);
@@ -1086,31 +1111,31 @@ footer {
     padding-bottom: 30px;
 }
 
-
 /* =====================================================
    MOBILE
 ===================================================== */
 
-@media(max-width: 950px) {
+@media(max-width:950px) {
 
     header {
+
         flex-wrap: wrap;
 
         padding: 18px 0;
     }
 
-    .nav {
+    .header-right {
+
         flex-wrap: wrap;
 
         justify-content: flex-end;
     }
-
 }
 
-
-@media(max-width: 750px) {
+@media(max-width:750px) {
 
     header {
+
         min-height: 70px;
     }
 
@@ -1119,6 +1144,7 @@ footer {
     }
 
     main {
+
         padding-top: 35px;
     }
 
@@ -1127,125 +1153,106 @@ footer {
     }
 
     .live-stats {
+
         gap: 12px;
     }
 
     .live-stat .value {
+
         font-size: 23px;
     }
 
     .typing-area {
+
         padding: 25px 20px;
     }
 
     .text-display {
+
         font-size: 19px;
 
         line-height: 1.8;
     }
 
     .result {
+
         padding: 25px 15px;
     }
 
     .result-wpm {
+
         font-size: 60px;
     }
 
     .result-grid {
+
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2,1fr);
     }
 
     .stats-grid {
+
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2,1fr);
     }
 
     .history-table {
-        font-size: 11px;
-    }
 
-    .history-table th,
-    .history-table td {
-        padding: 10px 7px;
-    }
+        display: block;
 
-}
+        overflow-x: auto;
 
-
-@media(max-width: 500px) {
-
-    .logo {
-        width: 100%;
-    }
-
-    header {
-        gap: 12px;
-    }
-
-    .nav {
-        width: 100%;
-
-        justify-content: space-between;
-    }
-
-    .best-score {
-        display: none;
+        white-space: nowrap;
     }
 
     .theme-selector {
-        margin-left: auto;
+
+        order: 3;
+    }
+}
+
+@media(max-width:500px) {
+
+    .app {
+        width: 94%;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .best-score {
+        font-size: 10px;
     }
 
     .controls {
-        gap: 10px;
+        gap: 8px;
     }
 
     .control {
         width: 100%;
-
         justify-content: center;
-    }
-
-    .live-stats {
-        gap: 5px;
-    }
-
-    .live-stat {
-        min-width: 65px;
-    }
-
-    .live-stat .value {
-        font-size: 20px;
-    }
-
-    .stat-divider {
-        height: 25px;
     }
 
     .stats-grid {
         grid-template-columns: 1fr;
     }
 
-    .theme-btn {
-        padding: 6px 7px;
+    .result-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
+    .typing-area {
+        min-height: 280px;
+    }
 }
 
 </style>
 </head>
 
-
 <body>
 
 <div class="app">
-
-
-<!-- ==================================================
-     HEADER
-================================================== -->
 
 <header>
 
@@ -1253,55 +1260,51 @@ footer {
         Type<span>Master</span>
     </div>
 
+    <div class="header-right">
 
-    <nav class="nav">
+        <div class="nav">
 
-        <div
-            class="nav-link active"
-            data-page="practice">
-            Practice
+            <div
+                class="nav-link active"
+                data-page="practice">
+                Practice
+            </div>
+
+            <div
+                class="nav-link"
+                data-page="history">
+                History
+            </div>
+
+            <div
+                class="nav-link"
+                data-page="statistics">
+                Statistics
+            </div>
+
         </div>
-
-        <div
-            class="nav-link"
-            data-page="history">
-            History
-        </div>
-
-        <div
-            class="nav-link"
-            data-page="statistics">
-            Statistics
-        </div>
-
-
-        <!-- THEME SELECTOR -->
 
         <div class="theme-selector">
 
             <button
                 class="theme-btn active"
-                data-theme="midnight"
-                title="Midnight Purple">
-                🌙
+                data-theme="midnight">
+                Midnight
             </button>
 
             <button
                 class="theme-btn"
-                data-theme="paper"
-                title="Clean Paper">
-                ☀️
+                data-theme="paper">
+                Paper
             </button>
 
             <button
                 class="theme-btn"
-                data-theme="forest"
-                title="Forest">
-                🌿
+                data-theme="forest">
+                Forest
             </button>
 
         </div>
-
 
         <div class="best-score">
 
@@ -1313,7 +1316,7 @@ footer {
 
         </div>
 
-    </nav>
+    </div>
 
 </header>
 
@@ -1328,326 +1331,320 @@ footer {
 
 <main>
 
+    <div class="top-title">
 
-<div class="top-title">
+        <h1>
+            Test Your Typing Speed
+        </h1>
 
-    <h1>
-        Typing Practice
-    </h1>
+        <p>
+            Focus on accuracy first. Speed will follow.
+        </p>
 
-    <p>
-        Focus on accuracy. Speed will follow.
-    </p>
-
-</div>
+    </div>
 
 
-<!-- LIVE STATS -->
+    <!-- LIVE STATS -->
 
-<div class="live-stats">
+    <div class="live-stats">
 
-    <div class="live-stat primary">
+        <div class="live-stat primary">
 
-        <div
-            class="value"
-            id="wpm">
-            0
+            <div
+                class="value"
+                id="wpm">
+                0
+            </div>
+
+            <div class="label">
+                WPM
+            </div>
+
         </div>
 
-        <div class="label">
-            WPM
-        </div>
 
-    </div>
+        <div class="stat-divider"></div>
 
 
-    <div class="stat-divider"></div>
+        <div class="live-stat">
 
+            <div
+                class="value"
+                id="accuracy">
+                100%
+            </div>
 
-    <div class="live-stat">
-
-        <div
-            class="value"
-            id="accuracy">
-            100%
-        </div>
-
-        <div class="label">
-            Accuracy
-        </div>
-
-    </div>
-
-
-    <div class="stat-divider"></div>
-
-
-    <div class="live-stat">
-
-        <div
-            class="value"
-            id="mistakes">
-            0
-        </div>
-
-        <div class="label">
-            Mistakes
-        </div>
-
-    </div>
-
-
-    <div class="stat-divider"></div>
-
-
-    <div class="live-stat">
-
-        <div
-            class="value"
-            id="timer">
-            01:00
-        </div>
-
-        <div class="label">
-            Time
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- CONTROLS -->
-
-<div class="controls">
-
-    <div class="control">
-
-        <button
-            class="pill"
-            data-duration="15">
-            15s
-        </button>
-
-        <button
-            class="pill"
-            data-duration="30">
-            30s
-        </button>
-
-        <button
-            class="pill active"
-            data-duration="60">
-            60s
-        </button>
-
-        <button
-            class="pill"
-            data-duration="120">
-            120s
-        </button>
-
-    </div>
-
-
-    <div class="control">
-
-        <button
-            class="pill"
-            data-difficulty="easy">
-            Easy
-        </button>
-
-        <button
-            class="pill active"
-            data-difficulty="medium">
-            Medium
-        </button>
-
-        <button
-            class="pill"
-            data-difficulty="hard">
-            Hard
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- PROGRESS -->
-
-<div class="progress-track">
-
-    <div
-        class="progress-bar"
-        id="progress">
-    </div>
-
-</div>
-
-
-<!-- TYPING -->
-
-<section
-    class="typing-area"
-    id="typingArea">
-
-    <div
-        class="text-display"
-        id="textDisplay">
-    </div>
-
-
-    <div
-        class="start-overlay"
-        id="startOverlay">
-
-        <div class="start-hint">
-            Click here and start typing
-        </div>
-
-    </div>
-
-
-    <textarea
-        id="typingInput"
-        spellcheck="false"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off">
-    </textarea>
-
-</section>
-
-
-<div class="actions">
-
-    <button
-        class="primary-btn"
-        id="startBtn">
-        Start Test
-    </button>
-
-    <button
-        class="secondary-btn"
-        id="resetBtn">
-        Reset
-    </button>
-
-</div>
-
-
-<div class="shortcuts">
-
-    <kbd>Tab</kbd>
-    Restart
-
-    <kbd>Esc</kbd>
-    Reset
-
-</div>
-
-
-<!-- RESULT -->
-
-<section
-    class="result"
-    id="result">
-
-    <div class="result-title">
-        Test Complete
-    </div>
-
-
-    <div class="result-wpm">
-
-        <span id="finalWpm">
-            0
-        </span>
-
-        <small>
-            WPM
-        </small>
-
-    </div>
-
-
-    <div
-        class="personal-best"
-        id="personalBest">
-
-        🏆 New Personal Best
-
-    </div>
-
-
-    <div class="result-grid">
-
-        <div class="result-card">
-
-            <strong id="finalAccuracy">
-                0%
-            </strong>
-
-            <span>
+            <div class="label">
                 Accuracy
-            </span>
+            </div>
 
         </div>
 
 
-        <div class="result-card">
+        <div class="stat-divider"></div>
 
-            <strong id="finalCorrect">
+
+        <div class="live-stat">
+
+            <div
+                class="value"
+                id="mistakes">
                 0
-            </strong>
+            </div>
 
-            <span>
-                Correct
-            </span>
-
-        </div>
-
-
-        <div class="result-card">
-
-            <strong id="finalMistakes">
-                0
-            </strong>
-
-            <span>
+            <div class="label">
                 Mistakes
-            </span>
+            </div>
 
         </div>
 
 
-        <div class="result-card">
+        <div class="stat-divider"></div>
 
-            <strong id="finalRawWpm">
-                0
-            </strong>
 
-            <span>
-                Raw WPM
-            </span>
+        <div class="live-stat">
+
+            <div
+                class="value"
+                id="timer">
+                60
+            </div>
+
+            <div class="label">
+                Seconds
+            </div>
 
         </div>
 
     </div>
 
 
-    <button
-        class="primary-btn"
-        id="tryAgainBtn">
+    <!-- CONTROLS -->
 
-        Try Again
+    <div class="controls">
 
-    </button>
+        <div class="control">
 
-</section>
+            <button
+                class="pill"
+                data-duration="15">
+                15s
+            </button>
 
+            <button
+                class="pill"
+                data-duration="30">
+                30s
+            </button>
+
+            <button
+                class="pill active"
+                data-duration="60">
+                60s
+            </button>
+
+        </div>
+
+
+        <div class="control">
+
+            <button
+                class="pill"
+                data-difficulty="easy">
+                Easy
+            </button>
+
+            <button
+                class="pill active"
+                data-difficulty="medium">
+                Medium
+            </button>
+
+            <button
+                class="pill"
+                data-difficulty="hard">
+                Hard
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress-track">
+
+        <div
+            class="progress-bar"
+            id="progress">
+        </div>
+
+    </div>
+
+
+    <!-- TYPING AREA -->
+
+    <div
+        class="typing-area"
+        id="typingArea">
+
+        <div
+            class="text-display"
+            id="textDisplay">
+        </div>
+
+
+        <input
+            id="typingInput"
+            type="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false">
+
+
+        <div
+            class="start-overlay"
+            id="startOverlay">
+
+            <div class="start-hint">
+
+                Click here or press
+                <b>Tab</b>
+                to start
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="actions">
+
+        <button
+            class="primary-btn"
+            id="startBtn">
+            Start Test
+        </button>
+
+        <button
+            class="secondary-btn"
+            id="resetBtn">
+            Reset
+        </button>
+
+    </div>
+
+
+    <div class="shortcuts">
+
+        <kbd>Tab</kbd>
+        Start
+
+        <kbd>Esc</kbd>
+        Reset
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <section
+        class="result"
+        id="result">
+
+        <div class="result-title">
+            Test Complete 🎉
+        </div>
+
+
+        <div class="result-wpm">
+
+            <span id="finalWpm">
+                0
+            </span>
+
+            <small>
+                WPM
+            </small>
+
+        </div>
+
+
+        <div
+            class="personal-best"
+            id="personalBest">
+            🏆 New Personal Best
+        </div>
+
+
+        <div class="result-grid">
+
+            <div class="result-card">
+
+                <strong id="finalAccuracy">
+                    0%
+                </strong>
+
+                <span>
+                    Accuracy
+                </span>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <strong id="finalCorrect">
+                    0
+                </strong>
+
+                <span>
+                    Correct
+                </span>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <strong id="finalMistakes">
+                    0
+                </strong>
+
+                <span>
+                    Mistakes
+                </span>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <strong id="finalRawWpm">
+                    0
+                </strong>
+
+                <span>
+                    Raw WPM
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            id="tryAgainBtn">
+            Try Again
+        </button>
+
+    </section>
 
 </main>
 
@@ -1664,39 +1661,37 @@ footer {
 
 <main>
 
-<div class="section-title">
-    Practice History
-</div>
+    <div class="section-title">
+        Practice History
+    </div>
 
-<div class="section-subtitle">
-    Your previous typing sessions.
-</div>
-
-
-<div class="history-header">
-
-    <span
-        id="historyCount"
-        style="
-            color:var(--muted);
-            font-size:12px;
-        ">
-        0 tests
-    </span>
+    <div class="section-subtitle">
+        Your previous typing sessions.
+    </div>
 
 
-    <button
-        class="danger-btn"
-        id="clearHistory">
+    <div class="history-header">
 
-        Clear History
+        <span
+            id="historyCount"
+            style="
+                color:var(--muted);
+                font-size:12px;
+            ">
+            0 tests
+        </span>
 
-    </button>
 
-</div>
+        <button
+            class="danger-btn"
+            id="clearHistory">
+            Clear History
+        </button>
+
+    </div>
 
 
-<div id="historyContainer"></div>
+    <div id="historyContainer"></div>
 
 </main>
 
@@ -1713,120 +1708,120 @@ footer {
 
 <main>
 
-<div class="section-title">
-    Statistics
-</div>
+    <div class="section-title">
+        Statistics
+    </div>
 
-<div class="section-subtitle">
-    Track your typing performance over time.
-</div>
+    <div class="section-subtitle">
+        Track your typing performance over time.
+    </div>
 
 
-<div class="stats-grid">
+    <div class="stats-grid">
 
-    <div class="stat-card">
+        <div class="stat-card">
 
-        <div
-            class="number"
-            id="statTests">
-            0
+            <div
+                class="number"
+                id="statTests">
+                0
+            </div>
+
+            <div class="label">
+                Tests Completed
+            </div>
+
         </div>
 
-        <div class="label">
-            Tests Completed
+
+        <div class="stat-card">
+
+            <div
+                class="number"
+                id="statBest">
+                0
+            </div>
+
+            <div class="label">
+                Best WPM
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="number"
+                id="statAverage">
+                0
+            </div>
+
+            <div class="label">
+                Average WPM
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="number"
+                id="statAccuracy">
+                0%
+            </div>
+
+            <div class="label">
+                Average Accuracy
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="number"
+                id="statCharacters">
+                0
+            </div>
+
+            <div class="label">
+                Total Characters
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="number"
+                id="statTime">
+                0m
+            </div>
+
+            <div class="label">
+                Practice Time
+            </div>
+
         </div>
 
     </div>
 
 
-    <div class="stat-card">
+    <div class="chart-container">
 
-        <div
-            class="number"
-            id="statBest">
-            0
+        <div class="chart-title">
+            WPM Progress
         </div>
 
-        <div class="label">
-            Best WPM
-        </div>
+        <canvas
+            id="statisticsChart">
+        </canvas>
 
     </div>
-
-
-    <div class="stat-card">
-
-        <div
-            class="number"
-            id="statAverage">
-            0
-        </div>
-
-        <div class="label">
-            Average WPM
-        </div>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <div
-            class="number"
-            id="statAccuracy">
-            0%
-        </div>
-
-        <div class="label">
-            Average Accuracy
-        </div>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <div
-            class="number"
-            id="statCharacters">
-            0
-        </div>
-
-        <div class="label">
-            Total Characters
-        </div>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <div
-            class="number"
-            id="statTime">
-            0m
-        </div>
-
-        <div class="label">
-            Practice Time
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="chart-container">
-
-    <div class="chart-title">
-        WPM Progress
-    </div>
-
-    <canvas
-        id="statisticsChart">
-    </canvas>
-
-</div>
 
 </main>
 
@@ -1838,7 +1833,6 @@ footer {
     TypeMaster © 2026 · Built for better typing
 
 </footer>
-
 
 </div>
 
@@ -1994,12 +1988,73 @@ let totalMistakes = 0;
    HISTORY
 ===================================================== */
 
-let history =
-    JSON.parse(
-        localStorage.getItem(
-            "typingHistory"
-        ) || "[]"
-    );
+const HISTORY_KEY = "typingHistory";
+
+let typingHistory =
+    loadHistory();
+
+
+function loadHistory() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                HISTORY_KEY
+            );
+
+        if (!saved) {
+            return [];
+        }
+
+        const parsed =
+            JSON.parse(saved);
+
+        if (!Array.isArray(parsed)) {
+            return [];
+        }
+
+        return parsed.filter(
+            item =>
+                item &&
+                typeof item === "object"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load history:",
+            error
+        );
+
+        return [];
+    }
+}
+
+
+function saveHistoryToStorage() {
+
+    try {
+
+        localStorage.setItem(
+            HISTORY_KEY,
+            JSON.stringify(
+                typingHistory
+            )
+        );
+
+        return true;
+
+    } catch (error) {
+
+        console.error(
+            "Unable to save history:",
+            error
+        );
+
+        return false;
+    }
+}
 
 
 /* =====================================================
@@ -2028,72 +2083,49 @@ function applyTheme(theme) {
         "theme-forest"
     );
 
-
     if (theme === "paper") {
 
         document.body.classList.add(
             "theme-paper"
         );
-
     }
-
 
     if (theme === "forest") {
 
         document.body.classList.add(
             "theme-forest"
         );
-
     }
 
-
     document
-        .querySelectorAll(
-            ".theme-btn"
-        )
-        .forEach(
-            button => {
+        .querySelectorAll(".theme-btn")
+        .forEach(button => {
 
-                button.classList.toggle(
-                    "active",
-                    button.dataset.theme === theme
-                );
+            button.classList.toggle(
+                "active",
+                button.dataset.theme === theme
+            );
 
-            }
-        );
-
+        });
 
     localStorage.setItem(
         "typingTheme",
         theme
     );
 
-
-    /*
-       Redraw chart because the
-       canvas uses theme colors.
-    */
-
     if (
         document
-            .getElementById(
-                "statisticsPage"
-            )
-            .classList.contains(
-                "active"
-            )
+            .getElementById("statisticsPage")
+            .classList.contains("active")
     ) {
 
-        drawStatisticsChart();
-
+        setTimeout(
+            drawStatisticsChart,
+            0
+        );
     }
-
 }
 
-
-/* =====================================================
-   LOAD SAVED THEME
-===================================================== */
 
 const savedTheme =
     localStorage.getItem(
@@ -2103,67 +2135,22 @@ const savedTheme =
 applyTheme(savedTheme);
 
 
-/* =====================================================
-   THEME BUTTONS
-===================================================== */
-
 document
-    .querySelectorAll(
-        ".theme-btn"
-    )
-    .forEach(
-        button => {
+    .querySelectorAll(".theme-btn")
+    .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-                    applyTheme(
-                        button.dataset.theme
-                    );
+                applyTheme(
+                    button.dataset.theme
+                );
 
-                }
-            );
-
-        }
-    );
-
-
-/* =====================================================
-   TIME FORMAT
-===================================================== */
-
-function formatTime(seconds) {
-
-    seconds =
-        Math.max(
-            0,
-            Math.ceil(seconds)
+            }
         );
 
-    const minutes =
-        Math.floor(
-            seconds / 60
-        );
-
-    const secs =
-        seconds % 60;
-
-    return (
-        String(minutes).padStart(
-            2,
-            "0"
-        )
-        +
-        ":"
-        +
-        String(secs).padStart(
-            2,
-            "0"
-        )
-    );
-
-}
+    });
 
 
 /* =====================================================
@@ -2175,61 +2162,51 @@ function generateText() {
     const list =
         texts[difficulty];
 
-    const index =
-        Math.floor(
-            Math.random() *
-            list.length
-        );
-
     currentText =
-        list[index];
+        list[
+            Math.floor(
+                Math.random() *
+                list.length
+            )
+        ];
 
-    renderText();
+    textDisplay.innerHTML = "";
 
+    [...currentText].forEach(
+        (char, index) => {
+
+            const span =
+                document.createElement(
+                    "span"
+                );
+
+            span.textContent =
+                char;
+
+            if (index === 0) {
+
+                span.classList.add(
+                    "current"
+                );
+            }
+
+            textDisplay.appendChild(
+                span
+            );
+
+        }
+    );
 }
 
 
 /* =====================================================
-   RENDER TEXT
+   FORMAT TIME
 ===================================================== */
 
-function renderText() {
+function formatTime(seconds) {
 
-    textDisplay.innerHTML = "";
-
-    currentText
-        .split("")
-        .forEach(
-            (
-                char,
-                index
-            ) => {
-
-                const span =
-                    document.createElement(
-                        "span"
-                    );
-
-                span.textContent =
-                    char;
-
-                if (
-                    index === 0
-                ) {
-
-                    span.classList.add(
-                        "current"
-                    );
-
-                }
-
-                textDisplay.appendChild(
-                    span
-                );
-
-            }
-        );
-
+    return Math.ceil(seconds)
+        .toString();
 }
 
 
@@ -2258,9 +2235,7 @@ function resetUI() {
     timeLeft = duration;
 
     timerElement.textContent =
-        formatTime(
-            timeLeft
-        );
+        formatTime(timeLeft);
 
     wpmElement.textContent =
         "0";
@@ -2292,6 +2267,7 @@ function resetUI() {
 
     generateText();
 
+    typingInput.blur();
 }
 
 
@@ -2329,9 +2305,7 @@ function startTest() {
     timeLeft = duration;
 
     timerElement.textContent =
-        formatTime(
-            timeLeft
-        );
+        formatTime(timeLeft);
 
     wpmElement.textContent =
         "0";
@@ -2362,7 +2336,6 @@ function startTest() {
             updateTimer,
             100
         );
-
 }
 
 
@@ -2390,10 +2363,7 @@ function updateTimer() {
         );
 
     timerElement.textContent =
-        formatTime(
-            timeLeft
-        );
-
+        formatTime(timeLeft);
 
     const percentage =
         (
@@ -2401,25 +2371,18 @@ function updateTimer() {
             duration
         ) * 100;
 
-
     progressElement.style.width =
         Math.min(
             100,
             percentage
         ) + "%";
 
-
     updateStats();
 
-
-    if (
-        timeLeft <= 0
-    ) {
+    if (timeLeft <= 0) {
 
         finishTest();
-
     }
-
 }
 
 
@@ -2451,19 +2414,14 @@ function handleInput() {
             "span"
         );
 
-
     spans.forEach(
-        (
-            span,
-            index
-        ) => {
+        (span, index) => {
 
             span.classList.remove(
                 "correct",
                 "incorrect",
                 "current"
             );
-
 
             if (
                 index <
@@ -2481,19 +2439,15 @@ function handleInput() {
 
                     currentCorrect++;
 
-                }
-                else {
+                } else {
 
                     span.classList.add(
                         "incorrect"
                     );
 
                     currentMistakes++;
-
                 }
-
             }
-
         }
     );
 
@@ -2503,12 +2457,16 @@ function handleInput() {
         currentText.length
     ) {
 
-        spans[
-            typed.length
-        ].classList.add(
-            "current"
-        );
+        if (
+            spans[typed.length]
+        ) {
 
+            spans[
+                typed.length
+            ].classList.add(
+                "current"
+            );
+        }
     }
 
 
@@ -2516,7 +2474,8 @@ function handleInput() {
 
 
     /*
-       Passage completed.
+       When the passage is completed,
+       commit its current statistics.
     */
 
     if (
@@ -2538,8 +2497,8 @@ function handleInput() {
 
         generateText();
 
+        typingInput.focus();
     }
-
 }
 
 
@@ -2547,11 +2506,7 @@ function handleInput() {
    LIVE STATISTICS
 ===================================================== */
 
-function updateStats() {
-
-    if (!startTime) {
-        return;
-    }
+function calculateMetrics() {
 
     const correct =
         totalCorrect +
@@ -2568,15 +2523,18 @@ function updateStats() {
     const minutes =
         elapsedSeconds / 60;
 
-
     let wpm = 0;
 
     let rawWpm = 0;
 
-
     if (
         minutes > 0
     ) {
+
+        /*
+           Standard WPM:
+           1 word = 5 characters.
+        */
 
         wpm =
             (
@@ -2589,12 +2547,9 @@ function updateStats() {
                 characters / 5
             ) /
             minutes;
-
     }
 
-
     let accuracy = 100;
-
 
     if (
         characters > 0
@@ -2605,21 +2560,41 @@ function updateStats() {
                 correct /
                 characters
             ) * 100;
-
     }
 
+    return {
+
+        correct,
+        mistakes,
+        characters,
+        wpm,
+        rawWpm,
+        accuracy
+    };
+}
+
+
+function updateStats() {
+
+    if (!startTime) {
+        return;
+    }
+
+    const metrics =
+        calculateMetrics();
 
     wpmElement.textContent =
-        Math.round(wpm);
+        Math.round(
+            metrics.wpm
+        );
 
     accuracyElement.textContent =
         Math.round(
-            accuracy
+            metrics.accuracy
         ) + "%";
 
     mistakesElement.textContent =
-        mistakes;
-
+        metrics.mistakes;
 }
 
 
@@ -2637,7 +2612,6 @@ function finishTest() {
 
     clearInterval(timer);
 
-
     elapsedSeconds =
         Math.min(
             duration,
@@ -2647,6 +2621,9 @@ function finishTest() {
             ) / 1000
         );
 
+    /*
+       Commit the final unfinished passage.
+    */
 
     totalCorrect +=
         currentCorrect;
@@ -2654,11 +2631,14 @@ function finishTest() {
     totalMistakes +=
         currentMistakes;
 
+    currentCorrect = 0;
+
+    currentMistakes = 0;
+
 
     const totalCharacters =
         totalCorrect +
         totalMistakes;
-
 
     const minutes =
         elapsedSeconds / 60;
@@ -2684,7 +2664,6 @@ function finishTest() {
                 totalCharacters / 5
             ) /
             minutes;
-
     }
 
 
@@ -2700,7 +2679,6 @@ function finishTest() {
                 totalCorrect /
                 totalCharacters
             ) * 100;
-
     }
 
 
@@ -2730,7 +2708,14 @@ function finishTest() {
         roundedRawWpm;
 
 
+    /*
+       Save test.
+    */
+
     saveHistory({
+
+        id:
+            Date.now(),
 
         date:
             new Date().toISOString(),
@@ -2754,18 +2739,18 @@ function finishTest() {
             totalCharacters,
 
         duration:
-            duration,
-
-        difficulty:
-            difficulty,
-
-        time:
             Math.round(
                 elapsedSeconds
-            )
+            ),
 
+        difficulty:
+            difficulty
     });
 
+
+    /*
+       Personal best.
+    */
 
     if (
         roundedWpm >
@@ -2777,7 +2762,7 @@ function finishTest() {
 
         localStorage.setItem(
             "typingBestWpm",
-            bestWpm
+            String(bestWpm)
         );
 
         bestScore.textContent =
@@ -2786,9 +2771,12 @@ function finishTest() {
         personalBest.classList.add(
             "show"
         );
-
     }
 
+
+    /*
+       Update UI.
+    */
 
     startBtn.textContent =
         "Start Test";
@@ -2800,6 +2788,9 @@ function finishTest() {
         "show"
     );
 
+    renderHistory();
+
+    updateStatistics();
 }
 
 
@@ -2809,21 +2800,23 @@ function finishTest() {
 
 function saveHistory(test) {
 
-    history.unshift(test);
+    /*
+       Add newest test first.
+    */
 
-    history =
-        history.slice(
+    typingHistory.unshift(test);
+
+    /*
+       Keep maximum 100 records.
+    */
+
+    typingHistory =
+        typingHistory.slice(
             0,
             100
         );
 
-    localStorage.setItem(
-        "typingHistory",
-        JSON.stringify(
-            history
-        )
-    );
-
+    saveHistoryToStorage();
 }
 
 
@@ -2833,21 +2826,26 @@ function saveHistory(test) {
 
 function formatDate(date) {
 
+    if (
+        !(date instanceof Date) ||
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return "-";
+    }
+
     return date.toLocaleString(
         undefined,
         {
             day: "2-digit",
-
             month: "short",
-
             year: "numeric",
-
             hour: "2-digit",
-
             minute: "2-digit"
         }
     );
-
 }
 
 
@@ -2857,12 +2855,14 @@ function formatDate(date) {
 
 function capitalize(value) {
 
+    if (!value) {
+        return "";
+    }
+
     return (
-        value.charAt(0).toUpperCase()
-        +
+        value.charAt(0).toUpperCase() +
         value.slice(1)
     );
-
 }
 
 
@@ -2883,16 +2883,21 @@ function renderHistory() {
         );
 
 
+    if (!container || !count) {
+        return;
+    }
+
+
     count.textContent =
-        `${history.length} ${
-            history.length === 1
+        `${typingHistory.length} ${
+            typingHistory.length === 1
                 ? "test"
                 : "tests"
         }`;
 
 
     if (
-        history.length === 0
+        typingHistory.length === 0
     ) {
 
         container.innerHTML = `
@@ -2919,7 +2924,6 @@ function renderHistory() {
         `;
 
         return;
-
     }
 
 
@@ -2941,7 +2945,7 @@ function renderHistory() {
 
                     <th>Mistakes</th>
 
-                    <th>Mode</th>
+                    <th>Time</th>
 
                     <th>Difficulty</th>
 
@@ -2954,14 +2958,13 @@ function renderHistory() {
     `;
 
 
-    history.forEach(
+    typingHistory.forEach(
         test => {
 
             const date =
                 new Date(
                     test.date
                 );
-
 
             html += `
 
@@ -2975,7 +2978,11 @@ function renderHistory() {
 
                         <span
                             class="history-wpm">
-                            ${test.wpm}
+
+                            ${Number(
+                                test.wpm
+                            ) || 0}
+
                         </span>
 
                     </td>
@@ -2984,33 +2991,45 @@ function renderHistory() {
 
                         <span
                             class="history-accuracy">
-                            ${test.accuracy}%
+
+                            ${Number(
+                                test.accuracy
+                            ) || 0}%
+
                         </span>
 
                     </td>
 
                     <td>
-                        ${test.correct}
+                        ${Number(
+                            test.correct
+                        ) || 0}
                     </td>
 
                     <td>
-                        ${test.mistakes}
+                        ${Number(
+                            test.mistakes
+                        ) || 0}
                     </td>
 
                     <td>
-                        ${test.duration}s
+                        ${Number(
+                            test.duration
+                        ) || Number(
+                            test.time
+                        ) || 0}s
                     </td>
 
                     <td>
                         ${capitalize(
-                            test.difficulty
+                            test.difficulty ||
+                            "medium"
                         )}
                     </td>
 
                 </tr>
 
             `;
-
         }
     );
 
@@ -3026,7 +3045,6 @@ function renderHistory() {
 
     container.innerHTML =
         html;
-
 }
 
 
@@ -3037,7 +3055,7 @@ function renderHistory() {
 function updateStatistics() {
 
     const tests =
-        history.length;
+        typingHistory.length;
 
 
     document.getElementById(
@@ -3078,54 +3096,75 @@ function updateStatistics() {
         drawStatisticsChart();
 
         return;
-
     }
+
+
+    const wpmValues =
+        typingHistory.map(
+            item =>
+                Number(item.wpm) || 0
+        );
 
 
     const best =
         Math.max(
-            ...history.map(
-                x => x.wpm
-            )
+            ...wpmValues
         );
 
 
     const average =
-        history.reduce(
+        wpmValues.reduce(
             (
                 sum,
-                x
+                value
             ) =>
-                sum + x.wpm,
+                sum + value,
             0
         ) / tests;
 
 
     /*
-       Weighted average accuracy.
-
-       This is better than simply averaging
-       percentages from each test.
+       Weighted accuracy.
     */
 
     const totalCorrectCharacters =
-        history.reduce(
+        typingHistory.reduce(
             (
                 sum,
-                x
+                item
             ) =>
-                sum + x.correct,
+                sum +
+                (
+                    Number(
+                        item.correct
+                    ) || 0
+                ),
             0
         );
 
 
     const totalCharacters =
-        history.reduce(
+        typingHistory.reduce(
             (
                 sum,
-                x
+                item
             ) =>
-                sum + x.characters,
+                sum +
+                (
+                    Number(
+                        item.characters
+                    ) ||
+                    (
+                        Number(
+                            item.correct
+                        ) || 0
+                    ) +
+                    (
+                        Number(
+                            item.mistakes
+                        ) || 0
+                    )
+                ),
             0
         );
 
@@ -3142,17 +3181,29 @@ function updateStatistics() {
                 totalCorrectCharacters /
                 totalCharacters
             ) * 100;
-
     }
 
 
+    /*
+       Total practice time.
+    */
+
     const seconds =
-        history.reduce(
+        typingHistory.reduce(
             (
                 sum,
-                x
+                item
             ) =>
-                sum + x.time,
+                sum +
+                (
+                    Number(
+                        item.duration
+                    ) ||
+                    Number(
+                        item.time
+                    ) ||
+                    0
+                ),
             0
         );
 
@@ -3186,7 +3237,8 @@ function updateStatistics() {
     document.getElementById(
         "statCharacters"
     ).textContent =
-        totalCharacters.toLocaleString();
+        totalCharacters
+            .toLocaleString();
 
 
     document.getElementById(
@@ -3196,7 +3248,6 @@ function updateStatistics() {
 
 
     drawStatisticsChart();
-
 }
 
 
@@ -3211,14 +3262,30 @@ function drawStatisticsChart() {
             "statisticsChart"
         );
 
+    if (!canvas) {
+        return;
+    }
+
     const ctx =
-        canvas.getContext(
-            "2d"
-        );
+        canvas.getContext("2d");
+
+    if (!ctx) {
+        return;
+    }
 
 
     const rect =
         canvas.getBoundingClientRect();
+
+
+    const width =
+        Math.max(
+            300,
+            rect.width
+        );
+
+    const height =
+        300;
 
 
     const ratio =
@@ -3227,10 +3294,10 @@ function drawStatisticsChart() {
 
 
     canvas.width =
-        rect.width * ratio;
+        width * ratio;
 
     canvas.height =
-        300 * ratio;
+        height * ratio;
 
 
     ctx.setTransform(
@@ -3243,13 +3310,6 @@ function drawStatisticsChart() {
     );
 
 
-    const width =
-        rect.width;
-
-    const height =
-        300;
-
-
     ctx.clearRect(
         0,
         0,
@@ -3258,17 +3318,23 @@ function drawStatisticsChart() {
     );
 
 
+    /*
+       Empty state.
+    */
+
     if (
-        history.length === 0
+        typingHistory.length === 0
     ) {
 
-        ctx.fillStyle =
+        const styles =
             getComputedStyle(
                 document.body
-            ).getPropertyValue(
-                "--muted"
             );
 
+        ctx.fillStyle =
+            styles.getPropertyValue(
+                "--muted"
+            );
 
         ctx.font =
             "13px Inter, sans-serif";
@@ -3283,19 +3349,23 @@ function drawStatisticsChart() {
         );
 
         return;
-
     }
 
 
+    /*
+       Oldest -> newest.
+    */
+
     const data =
-        [...history]
+        [...typingHistory]
             .reverse()
             .slice(-30);
 
 
     const values =
         data.map(
-            x => x.wpm
+            item =>
+                Number(item.wpm) || 0
         );
 
 
@@ -3306,7 +3376,8 @@ function drawStatisticsChart() {
         );
 
 
-    const padding = 30;
+    const padding =
+        30;
 
 
     const styles =
@@ -3328,7 +3399,7 @@ function drawStatisticsChart() {
 
 
     /*
-       Grid
+       Grid.
     */
 
     ctx.strokeStyle =
@@ -3366,12 +3437,11 @@ function drawStatisticsChart() {
         );
 
         ctx.stroke();
-
     }
 
 
     /*
-       Line
+       Line.
     */
 
     ctx.beginPath();
@@ -3391,8 +3461,7 @@ function drawStatisticsChart() {
                         1,
                         values.length - 1
                     )
-                )
-                *
+                ) *
                 (
                     width -
                     padding * 2
@@ -3405,8 +3474,7 @@ function drawStatisticsChart() {
                 (
                     value /
                     max
-                )
-                *
+                ) *
                 (
                     height -
                     padding * 2
@@ -3422,14 +3490,12 @@ function drawStatisticsChart() {
                     y
                 );
 
-            }
-            else {
+            } else {
 
                 ctx.lineTo(
                     x,
                     y
                 );
-
             }
 
         }
@@ -3441,11 +3507,15 @@ function drawStatisticsChart() {
 
     ctx.lineWidth = 3;
 
+    ctx.lineJoin = "round";
+
+    ctx.lineCap = "round";
+
     ctx.stroke();
 
 
     /*
-       Points
+       Points.
     */
 
     values.forEach(
@@ -3462,8 +3532,7 @@ function drawStatisticsChart() {
                         1,
                         values.length - 1
                     )
-                )
-                *
+                ) *
                 (
                     width -
                     padding * 2
@@ -3476,8 +3545,7 @@ function drawStatisticsChart() {
                 (
                     value /
                     max
-                )
-                *
+                ) *
                 (
                     height -
                     padding * 2
@@ -3498,10 +3566,8 @@ function drawStatisticsChart() {
                 accentColor;
 
             ctx.fill();
-
         }
     );
-
 }
 
 
@@ -3509,48 +3575,85 @@ function drawStatisticsChart() {
    CLEAR HISTORY
 ===================================================== */
 
-document
-    .getElementById(
+const clearHistoryButton =
+    document.getElementById(
         "clearHistory"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            if (
-                history.length === 0
-            ) {
-
-                return;
-
-            }
+    );
 
 
-            const confirmed =
-                confirm(
-                    "Clear all typing history?"
-                );
+clearHistoryButton.addEventListener(
+    "click",
+    () => {
+
+        /*
+           Nothing to clear.
+        */
+
+        if (
+            typingHistory.length === 0
+        ) {
+
+            return;
+        }
 
 
-            if (!confirmed) {
-                return;
-            }
-
-
-            history = [];
-
-
-            localStorage.removeItem(
-                "typingHistory"
+        const confirmed =
+            window.confirm(
+                "Clear all typing history?"
             );
 
 
-            renderHistory();
-
-            updateStatistics();
-
+        if (!confirmed) {
+            return;
         }
-    );
+
+
+        /*
+           1. Clear application state.
+        */
+
+        typingHistory = [];
+
+
+        /*
+           2. Remove stored history.
+        */
+
+        localStorage.removeItem(
+            HISTORY_KEY
+        );
+
+
+        /*
+           3. Verify storage is actually
+              empty.
+        */
+
+        if (
+            localStorage.getItem(
+                HISTORY_KEY
+            ) !== null
+        ) {
+
+            localStorage.setItem(
+                HISTORY_KEY,
+                "[]"
+            );
+        }
+
+
+        /*
+           4. Refresh everything.
+        */
+
+        renderHistory();
+
+        updateStatistics();
+
+        drawStatisticsChart();
+
+    }
+);
 
 
 /* =====================================================
@@ -3558,95 +3661,100 @@ document
 ===================================================== */
 
 document
-    .querySelectorAll(
-        ".nav-link"
-    )
-    .forEach(
-        link => {
+    .querySelectorAll(".nav-link")
+    .forEach(link => {
 
-            link.addEventListener(
-                "click",
-                () => {
+        link.addEventListener(
+            "click",
+            () => {
 
-                    const page =
-                        link.dataset.page;
+                const page =
+                    link.dataset.page;
 
 
-                    if (
-                        page !== "practice" &&
-                        running
-                    ) {
+                /*
+                   Stop active test when
+                   leaving Practice.
+                */
 
-                        clearInterval(
-                            timer
+                if (
+                    page !== "practice" &&
+                    running
+                ) {
+
+                    clearInterval(
+                        timer
+                    );
+
+                    running = false;
+                }
+
+
+                document
+                    .querySelectorAll(
+                        ".nav-link"
+                    )
+                    .forEach(item => {
+
+                        item.classList.remove(
+                            "active"
                         );
 
-                        running = false;
-
-                    }
+                    });
 
 
-                    document
-                        .querySelectorAll(
-                            ".nav-link"
-                        )
-                        .forEach(
-                            x =>
-                                x.classList.remove(
-                                    "active"
-                                )
+                link.classList.add(
+                    "active"
+                );
+
+
+                document
+                    .querySelectorAll(
+                        ".page"
+                    )
+                    .forEach(item => {
+
+                        item.classList.remove(
+                            "active"
                         );
 
+                    });
 
-                    link.classList.add(
+
+                document
+                    .getElementById(
+                        page +
+                        "Page"
+                    )
+                    .classList.add(
                         "active"
                     );
 
 
-                    document
-                        .querySelectorAll(
-                            ".page"
-                        )
-                        .forEach(
-                            x =>
-                                x.classList.remove(
-                                    "active"
-                                )
-                        );
+                if (
+                    page === "history"
+                ) {
 
-
-                    document
-                        .getElementById(
-                            page +
-                            "Page"
-                        )
-                        .classList.add(
-                            "active"
-                        );
-
-
-                    if (
-                        page === "history"
-                    ) {
-
-                        renderHistory();
-
-                    }
-
-
-                    if (
-                        page === "statistics"
-                    ) {
-
-                        updateStatistics();
-
-                    }
-
+                    renderHistory();
                 }
-            );
 
-        }
-    );
+
+                if (
+                    page === "statistics"
+                ) {
+
+                    updateStatistics();
+
+                    setTimeout(
+                        drawStatisticsChart,
+                        0
+                    );
+                }
+
+            }
+        );
+
+    });
 
 
 /* =====================================================
@@ -3657,43 +3765,41 @@ document
     .querySelectorAll(
         "[data-duration]"
     )
-    .forEach(
-        button => {
+    .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-                    document
-                        .querySelectorAll(
-                            "[data-duration]"
-                        )
-                        .forEach(
-                            x =>
-                                x.classList.remove(
-                                    "active"
-                                )
+                document
+                    .querySelectorAll(
+                        "[data-duration]"
+                    )
+                    .forEach(item => {
+
+                        item.classList.remove(
+                            "active"
                         );
 
+                    });
 
-                    button.classList.add(
-                        "active"
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                duration =
+                    Number(
+                        button.dataset.duration
                     );
 
 
-                    duration =
-                        Number(
-                            button.dataset.duration
-                        );
+                resetUI();
+            }
+        );
 
-
-                    resetUI();
-
-                }
-            );
-
-        }
-    );
+    });
 
 
 /* =====================================================
@@ -3704,41 +3810,39 @@ document
     .querySelectorAll(
         "[data-difficulty]"
     )
-    .forEach(
-        button => {
+    .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-                    document
-                        .querySelectorAll(
-                            "[data-difficulty]"
-                        )
-                        .forEach(
-                            x =>
-                                x.classList.remove(
-                                    "active"
-                                )
+                document
+                    .querySelectorAll(
+                        "[data-difficulty]"
+                    )
+                    .forEach(item => {
+
+                        item.classList.remove(
+                            "active"
                         );
 
-
-                    button.classList.add(
-                        "active"
-                    );
+                    });
 
 
-                    difficulty =
-                        button.dataset.difficulty;
+                button.classList.add(
+                    "active"
+                );
 
 
-                    resetUI();
+                difficulty =
+                    button.dataset.difficulty;
 
-                }
-            );
 
-        }
-    );
+                resetUI();
+            }
+        );
+
+    });
 
 
 /* =====================================================
@@ -3782,11 +3886,9 @@ typingArea.addEventListener(
         if (!running) {
 
             startTest();
-
         }
 
         typingInput.focus();
-
     }
 );
 
@@ -3802,7 +3904,6 @@ typingInput.addEventListener(
         typingArea.classList.add(
             "focused"
         );
-
     }
 );
 
@@ -3814,13 +3915,12 @@ typingInput.addEventListener(
         typingArea.classList.remove(
             "focused"
         );
-
     }
 );
 
 
 /* =====================================================
-   SHORTCUTS
+   KEYBOARD SHORTCUTS
 ===================================================== */
 
 document.addEventListener(
@@ -3831,10 +3931,26 @@ document.addEventListener(
             event.key === "Tab"
         ) {
 
-            event.preventDefault();
+            /*
+               Only prevent Tab when
+               the practice page is active.
+            */
 
-            startTest();
+            const practicePage =
+                document.getElementById(
+                    "practicePage"
+                );
 
+            if (
+                practicePage.classList.contains(
+                    "active"
+                )
+            ) {
+
+                event.preventDefault();
+
+                startTest();
+            }
         }
 
 
@@ -3843,9 +3959,7 @@ document.addEventListener(
         ) {
 
             resetUI();
-
         }
-
     }
 );
 
@@ -3871,9 +3985,7 @@ window.addEventListener(
         ) {
 
             drawStatisticsChart();
-
         }
-
     }
 );
 
