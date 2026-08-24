@@ -27,16 +27,72 @@
     --green: #67d6a3;
     --red: #ff6f7d;
     --yellow: #f5c96b;
+
+    --shadow: rgba(0, 0, 0, 0.25);
 }
+
+
+/* =====================================================
+   THEME 2 - CLEAN PAPER
+===================================================== */
+
+body.theme-paper {
+    --bg: #f4f5f7;
+    --panel: #ffffff;
+    --panel2: #f0f1f4;
+    --border: #dfe2e8;
+
+    --text: #20242c;
+    --muted: #747b88;
+
+    --accent: #4f46e5;
+    --accent-dark: #4338ca;
+
+    --green: #16845b;
+    --red: #dc3545;
+    --yellow: #c58a00;
+
+    --shadow: rgba(0, 0, 0, 0.08);
+}
+
+
+/* =====================================================
+   THEME 3 - FOREST
+===================================================== */
+
+body.theme-forest {
+    --bg: #0d1512;
+    --panel: #14201b;
+    --panel2: #192821;
+    --border: #2a3a32;
+
+    --text: #edf7f0;
+    --muted: #899d91;
+
+    --accent: #62c98b;
+    --accent-dark: #4eb378;
+
+    --green: #73d69a;
+    --red: #ef7373;
+    --yellow: #e2c56c;
+
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
 
 body {
     margin: 0;
+
     min-height: 100vh;
 
     background:
         radial-gradient(
             circle at 50% -20%,
-            rgba(139,124,255,0.10),
+            color-mix(
+                in srgb,
+                var(--accent) 12%,
+                transparent
+            ),
             transparent 40%
         ),
         var(--bg);
@@ -50,48 +106,79 @@ body {
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
 }
+
 
 button {
     font-family: inherit;
 }
 
+
+/* =====================================================
+   APP
+===================================================== */
+
 .app {
     width: min(1180px, 94%);
+
     margin: auto;
 }
 
-/* =========================
+
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 header {
-    height: 82px;
+    min-height: 82px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    gap: 25px;
+
+    border-bottom: 1px solid
+        color-mix(
+            in srgb,
+            var(--border) 60%,
+            transparent
+        );
 }
+
 
 .logo {
     font-size: 21px;
+
     font-weight: 800;
+
+    white-space: nowrap;
 }
+
 
 .logo span {
     color: var(--accent);
 }
 
+
 .nav {
     display: flex;
+
     align-items: center;
-    gap: 25px;
+
+    gap: 22px;
 }
+
 
 .nav-link {
     color: var(--muted);
+
     font-size: 13px;
 
     cursor: pointer;
@@ -99,17 +186,75 @@ header {
     transition: 0.2s;
 }
 
+
 .nav-link:hover,
 .nav-link.active {
     color: var(--text);
 }
 
+
 .nav-link.active {
     color: var(--accent);
 }
 
+
+/* =====================================================
+   THEME SELECTOR
+===================================================== */
+
+.theme-selector {
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 4px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+}
+
+
+.theme-btn {
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    padding: 7px 9px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+
+.theme-btn:hover {
+    color: var(--text);
+}
+
+
+.theme-btn.active {
+    color: var(--text);
+
+    background: var(--panel2);
+
+    box-shadow:
+        0 2px 8px var(--shadow);
+}
+
+
 .best-score {
-    padding: 8px 13px;
+    padding: 8px 12px;
 
     background: var(--panel);
 
@@ -120,37 +265,47 @@ header {
     font-size: 12px;
 
     color: var(--muted);
+
+    white-space: nowrap;
 }
+
 
 .best-score strong {
     color: var(--yellow);
+
     margin-left: 4px;
 }
 
-/* =========================
+
+/* =====================================================
    PAGE
-========================= */
+===================================================== */
 
 .page {
     display: none;
 }
 
+
 .page.active {
     display: block;
 }
+
 
 main {
     padding: 50px 0 80px;
 }
 
-/* =========================
+
+/* =====================================================
    TITLE
-========================= */
+===================================================== */
 
 .top-title {
     text-align: center;
+
     margin-bottom: 38px;
 }
+
 
 .top-title h1 {
     margin: 0;
@@ -160,6 +315,7 @@ main {
     letter-spacing: -1.5px;
 }
 
+
 .top-title p {
     margin-top: 10px;
 
@@ -168,14 +324,16 @@ main {
     font-size: 14px;
 }
 
-/* =========================
+
+/* =====================================================
    LIVE STATS
-========================= */
+===================================================== */
 
 .live-stats {
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     gap: 38px;
@@ -183,15 +341,20 @@ main {
     margin-bottom: 28px;
 }
 
+
 .live-stat {
     text-align: center;
+
     min-width: 90px;
 }
 
+
 .live-stat .value {
     font-size: 31px;
+
     font-weight: 750;
 }
+
 
 .live-stat .label {
     margin-top: 4px;
@@ -205,20 +368,24 @@ main {
     text-transform: uppercase;
 }
 
+
 .live-stat.primary .value {
     color: var(--accent);
 }
 
+
 .stat-divider {
     width: 1px;
+
     height: 35px;
 
     background: var(--border);
 }
 
-/* =========================
+
+/* =====================================================
    CONTROLS
-========================= */
+===================================================== */
 
 .controls {
     display: flex;
@@ -231,6 +398,7 @@ main {
 
     margin-bottom: 28px;
 }
+
 
 .control {
     display: flex;
@@ -248,6 +416,7 @@ main {
     border-radius: 10px;
 }
 
+
 .pill {
     border: 0;
 
@@ -264,9 +433,11 @@ main {
     font-size: 12px;
 }
 
+
 .pill:hover {
     color: var(--text);
 }
+
 
 .pill.active {
     color: white;
@@ -274,19 +445,25 @@ main {
     background: var(--accent);
 
     box-shadow:
-        0 4px 15px rgba(139,124,255,0.22);
+        0 4px 15px
+        color-mix(
+            in srgb,
+            var(--accent) 25%,
+            transparent
+        );
 }
 
-/* =========================
+
+/* =====================================================
    PROGRESS
-========================= */
+===================================================== */
 
 .progress-track {
     height: 3px;
 
     width: 100%;
 
-    background: #222631;
+    background: var(--panel2);
 
     border-radius: 20px;
 
@@ -294,6 +471,7 @@ main {
 
     overflow: hidden;
 }
+
 
 .progress-bar {
     height: 100%;
@@ -305,9 +483,10 @@ main {
     transition: width 0.15s linear;
 }
 
-/* =========================
+
+/* =====================================================
    TYPING AREA
-========================= */
+===================================================== */
 
 .typing-area {
     position: relative;
@@ -326,16 +505,29 @@ main {
 
     transition:
         border-color 0.2s,
-        box-shadow 0.2s;
+        box-shadow 0.2s,
+        background 0.25s;
 }
+
 
 .typing-area.focused {
-    border-color: rgba(139,124,255,0.5);
+    border-color:
+        color-mix(
+            in srgb,
+            var(--accent) 55%,
+            var(--border)
+        );
 
     box-shadow:
-        0 0 0 1px rgba(139,124,255,0.08),
-        0 20px 60px rgba(0,0,0,0.15);
+        0 0 0 1px
+        color-mix(
+            in srgb,
+            var(--accent) 10%,
+            transparent
+        ),
+        0 20px 60px var(--shadow);
 }
+
 
 .text-display {
     max-width: 1000px;
@@ -346,28 +538,42 @@ main {
 
     line-height: 1.9;
 
-    color: #505664;
+    color: color-mix(
+        in srgb,
+        var(--muted) 55%,
+        var(--panel)
+    );
 
     user-select: none;
 }
+
 
 .text-display span {
     position: relative;
 }
 
+
 .text-display span.correct {
     color: var(--green);
 }
 
+
 .text-display span.incorrect {
     color: var(--red);
 
-    background: rgba(255,111,125,0.10);
+    background:
+        color-mix(
+            in srgb,
+            var(--red) 12%,
+            transparent
+        );
 }
 
+
 .text-display span.current {
-    color: #c6cad3;
+    color: var(--text);
 }
+
 
 .text-display span.current::before {
     content: "";
@@ -387,6 +593,7 @@ main {
     animation: cursorBlink 1s infinite;
 }
 
+
 @keyframes cursorBlink {
 
     0%,
@@ -399,6 +606,7 @@ main {
         opacity: 0;
     }
 }
+
 
 .start-overlay {
     position: absolute;
@@ -416,17 +624,24 @@ main {
     padding-bottom: 25px;
 }
 
+
 .start-hint {
-    color: #707786;
+    color: var(--muted);
 
     font-size: 12px;
 
-    background: rgba(13,15,20,0.75);
+    background:
+        color-mix(
+            in srgb,
+            var(--bg) 80%,
+            transparent
+        );
 
     padding: 8px 14px;
 
     border-radius: 8px;
 }
+
 
 #typingInput {
     position: absolute;
@@ -440,9 +655,10 @@ main {
     height: 1px;
 }
 
-/* =========================
-   ACTIONS
-========================= */
+
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .actions {
     display: flex;
@@ -453,6 +669,7 @@ main {
 
     margin-top: 24px;
 }
+
 
 .primary-btn {
     border: 0;
@@ -470,11 +687,17 @@ main {
     font-size: 13px;
 
     font-weight: 650;
+
+    transition: 0.2s;
 }
+
 
 .primary-btn:hover {
     background: var(--accent-dark);
+
+    transform: translateY(-1px);
 }
+
 
 .secondary-btn {
     border: 1px solid var(--border);
@@ -492,41 +715,45 @@ main {
     font-size: 13px;
 }
 
+
 .secondary-btn:hover {
     color: var(--text);
 }
 
-/* =========================
+
+/* =====================================================
    SHORTCUTS
-========================= */
+===================================================== */
 
 .shortcuts {
     text-align: center;
 
     margin-top: 25px;
 
-    color: #5f6674;
+    color: var(--muted);
 
     font-size: 11px;
 }
 
+
 kbd {
     padding: 3px 6px;
 
-    border: 1px solid #303540;
+    border: 1px solid var(--border);
 
     border-radius: 4px;
 
-    background: #171a20;
+    background: var(--panel);
 
-    color: #858c9b;
+    color: var(--muted);
 
     margin: 0 3px;
 }
 
-/* =========================
+
+/* =====================================================
    RESULT
-========================= */
+===================================================== */
 
 .result {
     display: none;
@@ -544,9 +771,11 @@ kbd {
     text-align: center;
 }
 
+
 .result.show {
     display: block;
 }
+
 
 .result-title {
     color: var(--muted);
@@ -558,6 +787,7 @@ kbd {
     letter-spacing: 2px;
 }
 
+
 .result-wpm {
     margin-top: 10px;
 
@@ -568,11 +798,13 @@ kbd {
     color: var(--accent);
 }
 
+
 .result-wpm small {
     font-size: 18px;
 
     color: var(--muted);
 }
+
 
 .personal-best {
     display: none;
@@ -586,9 +818,11 @@ kbd {
     font-weight: 650;
 }
 
+
 .personal-best.show {
     display: block;
 }
+
 
 .result-grid {
     display: grid;
@@ -603,6 +837,7 @@ kbd {
     max-width: 700px;
 }
 
+
 .result-card {
     background: var(--panel2);
 
@@ -613,6 +848,7 @@ kbd {
     padding: 18px 10px;
 }
 
+
 .result-card strong {
     display: block;
 
@@ -620,6 +856,7 @@ kbd {
 
     margin-bottom: 5px;
 }
+
 
 .result-card span {
     color: var(--muted);
@@ -629,9 +866,10 @@ kbd {
     text-transform: uppercase;
 }
 
-/* =========================
+
+/* =====================================================
    HISTORY
-========================= */
+===================================================== */
 
 .section-title {
     margin-bottom: 8px;
@@ -641,6 +879,7 @@ kbd {
     letter-spacing: -1px;
 }
 
+
 .section-subtitle {
     margin-bottom: 30px;
 
@@ -648,6 +887,7 @@ kbd {
 
     font-size: 14px;
 }
+
 
 .history-header {
     display: flex;
@@ -658,6 +898,7 @@ kbd {
 
     margin-bottom: 15px;
 }
+
 
 .history-table {
     width: 100%;
@@ -673,6 +914,7 @@ kbd {
     overflow: hidden;
 }
 
+
 .history-table th,
 .history-table td {
     padding: 15px;
@@ -683,6 +925,7 @@ kbd {
 
     font-size: 13px;
 }
+
 
 .history-table th {
     color: var(--muted);
@@ -696,9 +939,11 @@ kbd {
     background: var(--panel2);
 }
 
+
 .history-table tr:last-child td {
     border-bottom: 0;
 }
+
 
 .history-wpm {
     color: var(--accent);
@@ -706,9 +951,11 @@ kbd {
     font-weight: 700;
 }
 
+
 .history-accuracy {
     color: var(--green);
 }
+
 
 .empty-state {
     padding: 60px 20px;
@@ -724,8 +971,14 @@ kbd {
     border-radius: 14px;
 }
 
+
 .danger-btn {
-    border: 1px solid rgba(255,111,125,0.3);
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--red) 30%,
+            var(--border)
+        );
 
     background: transparent;
 
@@ -740,9 +993,10 @@ kbd {
     font-size: 12px;
 }
 
-/* =========================
+
+/* =====================================================
    STATISTICS
-========================= */
+===================================================== */
 
 .stats-grid {
     display: grid;
@@ -755,6 +1009,7 @@ kbd {
     margin-bottom: 25px;
 }
 
+
 .stat-card {
     background: var(--panel);
 
@@ -765,6 +1020,7 @@ kbd {
     padding: 24px;
 }
 
+
 .stat-card .number {
     font-size: 32px;
 
@@ -772,6 +1028,7 @@ kbd {
 
     color: var(--accent);
 }
+
 
 .stat-card .label {
     margin-top: 6px;
@@ -785,6 +1042,7 @@ kbd {
     letter-spacing: 0.8px;
 }
 
+
 .chart-container {
     background: var(--panel);
 
@@ -797,6 +1055,7 @@ kbd {
     margin-top: 20px;
 }
 
+
 .chart-title {
     color: var(--muted);
 
@@ -805,38 +1064,54 @@ kbd {
     margin-bottom: 15px;
 }
 
+
 canvas {
     width: 100%;
 
     height: 300px;
 }
 
-/* =========================
+
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer {
     text-align: center;
 
-    color: #4e5562;
+    color: var(--muted);
 
     font-size: 11px;
 
     padding-bottom: 30px;
 }
 
-/* =========================
-   MOBILE
-========================= */
 
-@media(max-width:750px) {
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width: 950px) {
 
     header {
-        height: 70px;
+        flex-wrap: wrap;
+
+        padding: 18px 0;
     }
 
     .nav {
-        gap: 12px;
+        flex-wrap: wrap;
+
+        justify-content: flex-end;
+    }
+
+}
+
+
+@media(max-width: 750px) {
+
+    header {
+        min-height: 70px;
     }
 
     .nav-link {
@@ -879,12 +1154,12 @@ footer {
 
     .result-grid {
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, 1fr);
     }
 
     .stats-grid {
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, 1fr);
     }
 
     .history-table {
@@ -895,12 +1170,32 @@ footer {
     .history-table td {
         padding: 10px 7px;
     }
+
 }
 
-@media(max-width:450px) {
+
+@media(max-width: 500px) {
+
+    .logo {
+        width: 100%;
+    }
+
+    header {
+        gap: 12px;
+    }
+
+    .nav {
+        width: 100%;
+
+        justify-content: space-between;
+    }
 
     .best-score {
         display: none;
+    }
+
+    .theme-selector {
+        margin-left: auto;
     }
 
     .controls {
@@ -933,20 +1228,31 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .theme-btn {
+        padding: 6px 7px;
+    }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
 <div class="app">
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
 
 <header>
 
     <div class="logo">
         Type<span>Master</span>
     </div>
+
 
     <nav class="nav">
 
@@ -968,11 +1274,43 @@ footer {
             Statistics
         </div>
 
+
+        <!-- THEME SELECTOR -->
+
+        <div class="theme-selector">
+
+            <button
+                class="theme-btn active"
+                data-theme="midnight"
+                title="Midnight Purple">
+                🌙
+            </button>
+
+            <button
+                class="theme-btn"
+                data-theme="paper"
+                title="Clean Paper">
+                ☀️
+            </button>
+
+            <button
+                class="theme-btn"
+                data-theme="forest"
+                title="Forest">
+                🌿
+            </button>
+
+        </div>
+
+
         <div class="best-score">
+
             Best
+
             <strong id="bestScore">
                 0 WPM
             </strong>
+
         </div>
 
     </nav>
@@ -980,15 +1318,16 @@ footer {
 </header>
 
 
-<!-- ==========================================
-     PRACTICE PAGE
-========================================== -->
+<!-- ==================================================
+     PRACTICE
+================================================== -->
 
 <div
     id="practicePage"
     class="page active">
 
 <main>
+
 
 <div class="top-title">
 
@@ -1148,7 +1487,7 @@ footer {
 </div>
 
 
-<!-- TYPING AREA -->
+<!-- TYPING -->
 
 <section
     class="typing-area"
@@ -1237,7 +1576,9 @@ footer {
     <div
         class="personal-best"
         id="personalBest">
+
         🏆 New Personal Best
+
     </div>
 
 
@@ -1300,19 +1641,22 @@ footer {
     <button
         class="primary-btn"
         id="tryAgainBtn">
+
         Try Again
+
     </button>
 
 </section>
+
 
 </main>
 
 </div>
 
 
-<!-- ==========================================
-     HISTORY PAGE
-========================================== -->
+<!-- ==================================================
+     HISTORY
+================================================== -->
 
 <div
     id="historyPage"
@@ -1333,30 +1677,35 @@ footer {
 
     <span
         id="historyCount"
-        style="color:var(--muted);font-size:12px;">
+        style="
+            color:var(--muted);
+            font-size:12px;
+        ">
         0 tests
     </span>
+
 
     <button
         class="danger-btn"
         id="clearHistory">
+
         Clear History
+
     </button>
 
 </div>
 
 
-<div id="historyContainer">
-</div>
+<div id="historyContainer"></div>
 
 </main>
 
 </div>
 
 
-<!-- ==========================================
-     STATISTICS PAGE
-========================================== -->
+<!-- ==================================================
+     STATISTICS
+================================================== -->
 
 <div
     id="statisticsPage"
@@ -1490,13 +1839,14 @@ footer {
 
 </footer>
 
+
 </div>
 
 
 <script>
 
 /* =====================================================
-   TEXT DATA
+   TEXT
 ===================================================== */
 
 const texts = {
@@ -1631,28 +1981,18 @@ let startTime = null;
 
 let elapsedSeconds = 0;
 
-
-/*
-   Current passage
-*/
-
 let currentCorrect = 0;
 
 let currentMistakes = 0;
-
-
-/*
-   Entire test
-*/
 
 let totalCorrect = 0;
 
 let totalMistakes = 0;
 
 
-/*
-   History
-*/
+/* =====================================================
+   HISTORY
+===================================================== */
 
 let history =
     JSON.parse(
@@ -1678,28 +2018,149 @@ bestScore.textContent =
 
 
 /* =====================================================
-   FORMAT TIME
+   THEME
+===================================================== */
+
+function applyTheme(theme) {
+
+    document.body.classList.remove(
+        "theme-paper",
+        "theme-forest"
+    );
+
+
+    if (theme === "paper") {
+
+        document.body.classList.add(
+            "theme-paper"
+        );
+
+    }
+
+
+    if (theme === "forest") {
+
+        document.body.classList.add(
+            "theme-forest"
+        );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            ".theme-btn"
+        )
+        .forEach(
+            button => {
+
+                button.classList.toggle(
+                    "active",
+                    button.dataset.theme === theme
+                );
+
+            }
+        );
+
+
+    localStorage.setItem(
+        "typingTheme",
+        theme
+    );
+
+
+    /*
+       Redraw chart because the
+       canvas uses theme colors.
+    */
+
+    if (
+        document
+            .getElementById(
+                "statisticsPage"
+            )
+            .classList.contains(
+                "active"
+            )
+    ) {
+
+        drawStatisticsChart();
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD SAVED THEME
+===================================================== */
+
+const savedTheme =
+    localStorage.getItem(
+        "typingTheme"
+    ) || "midnight";
+
+applyTheme(savedTheme);
+
+
+/* =====================================================
+   THEME BUTTONS
+===================================================== */
+
+document
+    .querySelectorAll(
+        ".theme-btn"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    applyTheme(
+                        button.dataset.theme
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   TIME FORMAT
 ===================================================== */
 
 function formatTime(seconds) {
 
-    seconds = Math.max(
-        0,
-        Math.ceil(seconds)
-    );
+    seconds =
+        Math.max(
+            0,
+            Math.ceil(seconds)
+        );
 
     const minutes =
-        Math.floor(seconds / 60);
+        Math.floor(
+            seconds / 60
+        );
 
     const secs =
         seconds % 60;
 
     return (
-        String(minutes).padStart(2, "0")
+        String(minutes).padStart(
+            2,
+            "0"
+        )
         +
         ":"
         +
-        String(secs).padStart(2, "0")
+        String(secs).padStart(
+            2,
+            "0"
+        )
     );
 
 }
@@ -1716,7 +2177,8 @@ function generateText() {
 
     const index =
         Math.floor(
-            Math.random() * list.length
+            Math.random() *
+            list.length
         );
 
     currentText =
@@ -1738,15 +2200,22 @@ function renderText() {
     currentText
         .split("")
         .forEach(
-            (char, index) => {
+            (
+                char,
+                index
+            ) => {
 
                 const span =
-                    document.createElement("span");
+                    document.createElement(
+                        "span"
+                    );
 
                 span.textContent =
                     char;
 
-                if (index === 0) {
+                if (
+                    index === 0
+                ) {
 
                     span.classList.add(
                         "current"
@@ -1765,7 +2234,7 @@ function renderText() {
 
 
 /* =====================================================
-   RESET UI
+   RESET
 ===================================================== */
 
 function resetUI() {
@@ -1789,7 +2258,9 @@ function resetUI() {
     timeLeft = duration;
 
     timerElement.textContent =
-        formatTime(timeLeft);
+        formatTime(
+            timeLeft
+        );
 
     wpmElement.textContent =
         "0";
@@ -1825,7 +2296,7 @@ function resetUI() {
 
 
 /* =====================================================
-   START TEST
+   START
 ===================================================== */
 
 function startTest() {
@@ -1842,7 +2313,8 @@ function startTest() {
 
     running = true;
 
-    startTime = Date.now();
+    startTime =
+        Date.now();
 
     elapsedSeconds = 0;
 
@@ -1857,7 +2329,9 @@ function startTest() {
     timeLeft = duration;
 
     timerElement.textContent =
-        formatTime(timeLeft);
+        formatTime(
+            timeLeft
+        );
 
     wpmElement.textContent =
         "0";
@@ -1916,7 +2390,9 @@ function updateTimer() {
         );
 
     timerElement.textContent =
-        formatTime(timeLeft);
+        formatTime(
+            timeLeft
+        );
 
 
     const percentage =
@@ -1924,6 +2400,7 @@ function updateTimer() {
             elapsedSeconds /
             duration
         ) * 100;
+
 
     progressElement.style.width =
         Math.min(
@@ -1935,7 +2412,9 @@ function updateTimer() {
     updateStats();
 
 
-    if (timeLeft <= 0) {
+    if (
+        timeLeft <= 0
+    ) {
 
         finishTest();
 
@@ -1974,7 +2453,10 @@ function handleInput() {
 
 
     spans.forEach(
-        (span, index) => {
+        (
+            span,
+            index
+        ) => {
 
             span.classList.remove(
                 "correct",
@@ -2034,8 +2516,7 @@ function handleInput() {
 
 
     /*
-       If current passage finished,
-       add it to the total.
+       Passage completed.
     */
 
     if (
@@ -2063,7 +2544,7 @@ function handleInput() {
 
 
 /* =====================================================
-   UPDATE STATS
+   LIVE STATISTICS
 ===================================================== */
 
 function updateStats() {
@@ -2084,7 +2565,6 @@ function updateStats() {
         correct +
         mistakes;
 
-
     const minutes =
         elapsedSeconds / 60;
 
@@ -2094,26 +2574,15 @@ function updateStats() {
     let rawWpm = 0;
 
 
-    if (minutes > 0) {
-
-        /*
-           Standard WPM:
-
-           Correct characters / 5 / minutes
-        */
+    if (
+        minutes > 0
+    ) {
 
         wpm =
             (
                 correct / 5
             ) /
             minutes;
-
-
-        /*
-           Raw WPM:
-
-           All typed characters / 5 / minutes
-        */
 
         rawWpm =
             (
@@ -2127,14 +2596,15 @@ function updateStats() {
     let accuracy = 100;
 
 
-    if (characters > 0) {
+    if (
+        characters > 0
+    ) {
 
         accuracy =
             (
                 correct /
                 characters
-            ) *
-            100;
+            ) * 100;
 
     }
 
@@ -2143,7 +2613,9 @@ function updateStats() {
         Math.round(wpm);
 
     accuracyElement.textContent =
-        Math.round(accuracy) + "%";
+        Math.round(
+            accuracy
+        ) + "%";
 
     mistakesElement.textContent =
         mistakes;
@@ -2152,7 +2624,7 @@ function updateStats() {
 
 
 /* =====================================================
-   FINISH TEST
+   FINISH
 ===================================================== */
 
 function finishTest() {
@@ -2176,10 +2648,6 @@ function finishTest() {
         );
 
 
-    /*
-       Include currently typed passage.
-    */
-
     totalCorrect +=
         currentCorrect;
 
@@ -2201,14 +2669,15 @@ function finishTest() {
     let rawWpm = 0;
 
 
-    if (minutes > 0) {
+    if (
+        minutes > 0
+    ) {
 
         wpm =
             (
                 totalCorrect / 5
             ) /
             minutes;
-
 
         rawWpm =
             (
@@ -2222,14 +2691,15 @@ function finishTest() {
     let accuracy = 100;
 
 
-    if (totalCharacters > 0) {
+    if (
+        totalCharacters > 0
+    ) {
 
         accuracy =
             (
                 totalCorrect /
                 totalCharacters
-            ) *
-            100;
+            ) * 100;
 
     }
 
@@ -2243,10 +2713,6 @@ function finishTest() {
     const roundedAccuracy =
         Math.round(accuracy);
 
-
-    /*
-       RESULT
-    */
 
     finalWpm.textContent =
         roundedWpm;
@@ -2264,38 +2730,42 @@ function finishTest() {
         roundedRawWpm;
 
 
-    /*
-       Save history
-    */
-
     saveHistory({
-        date: new Date().toISOString(),
 
-        wpm: roundedWpm,
+        date:
+            new Date().toISOString(),
 
-        rawWpm: roundedRawWpm,
+        wpm:
+            roundedWpm,
 
-        accuracy: roundedAccuracy,
+        rawWpm:
+            roundedRawWpm,
 
-        correct: totalCorrect,
+        accuracy:
+            roundedAccuracy,
 
-        mistakes: totalMistakes,
+        correct:
+            totalCorrect,
 
-        characters: totalCharacters,
+        mistakes:
+            totalMistakes,
 
-        duration: duration,
+        characters:
+            totalCharacters,
 
-        difficulty: difficulty,
+        duration:
+            duration,
 
-        time: Math.round(
-            elapsedSeconds
-        )
+        difficulty:
+            difficulty,
+
+        time:
+            Math.round(
+                elapsedSeconds
+            )
+
     });
 
-
-    /*
-       Best WPM
-    */
 
     if (
         roundedWpm >
@@ -2326,7 +2796,6 @@ function finishTest() {
     startOverlay.style.display =
         "flex";
 
-
     result.classList.add(
         "show"
     );
@@ -2342,10 +2811,6 @@ function saveHistory(test) {
 
     history.unshift(test);
 
-    /*
-       Keep last 100 tests.
-    */
-
     history =
         history.slice(
             0,
@@ -2354,14 +2819,55 @@ function saveHistory(test) {
 
     localStorage.setItem(
         "typingHistory",
-        JSON.stringify(history)
+        JSON.stringify(
+            history
+        )
     );
 
 }
 
 
 /* =====================================================
-   RENDER HISTORY
+   FORMAT DATE
+===================================================== */
+
+function formatDate(date) {
+
+    return date.toLocaleString(
+        undefined,
+        {
+            day: "2-digit",
+
+            month: "short",
+
+            year: "numeric",
+
+            hour: "2-digit",
+
+            minute: "2-digit"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CAPITALIZE
+===================================================== */
+
+function capitalize(value) {
+
+    return (
+        value.charAt(0).toUpperCase()
+        +
+        value.slice(1)
+    );
+
+}
+
+
+/* =====================================================
+   HISTORY
 ===================================================== */
 
 function renderHistory() {
@@ -2403,7 +2909,7 @@ function renderHistory() {
 
                 No typing tests yet.
 
-                <br>
+                <br><br>
 
                 Complete your first test
                 to see your history.
@@ -2466,17 +2972,21 @@ function renderHistory() {
                     </td>
 
                     <td>
+
                         <span
                             class="history-wpm">
                             ${test.wpm}
                         </span>
+
                     </td>
 
                     <td>
+
                         <span
                             class="history-accuracy">
                             ${test.accuracy}%
                         </span>
+
                     </td>
 
                     <td>
@@ -2521,42 +3031,6 @@ function renderHistory() {
 
 
 /* =====================================================
-   FORMAT DATE
-===================================================== */
-
-function formatDate(date) {
-
-    return date.toLocaleString(
-        undefined,
-        {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-
-            hour: "2-digit",
-            minute: "2-digit"
-        }
-    );
-
-}
-
-
-/* =====================================================
-   CAPITALIZE
-===================================================== */
-
-function capitalize(value) {
-
-    return (
-        value.charAt(0).toUpperCase()
-        +
-        value.slice(1)
-    );
-
-}
-
-
-/* =====================================================
    STATISTICS
 ===================================================== */
 
@@ -2572,7 +3046,9 @@ function updateStatistics() {
         tests;
 
 
-    if (tests === 0) {
+    if (
+        tests === 0
+    ) {
 
         document.getElementById(
             "statBest"
@@ -2606,10 +3082,6 @@ function updateStatistics() {
     }
 
 
-    /*
-       Best WPM
-    */
-
     const best =
         Math.max(
             ...history.map(
@@ -2617,10 +3089,6 @@ function updateStatistics() {
             )
         );
 
-
-    /*
-       Average WPM
-    */
 
     const average =
         history.reduce(
@@ -2634,25 +3102,24 @@ function updateStatistics() {
 
 
     /*
-       Average accuracy
+       Weighted average accuracy.
+
+       This is better than simply averaging
+       percentages from each test.
     */
 
-    const avgAccuracy =
+    const totalCorrectCharacters =
         history.reduce(
             (
                 sum,
                 x
             ) =>
-                sum + x.accuracy,
+                sum + x.correct,
             0
-        ) / tests;
+        );
 
 
-    /*
-       Total characters
-    */
-
-    const characters =
+    const totalCharacters =
         history.reduce(
             (
                 sum,
@@ -2663,9 +3130,21 @@ function updateStatistics() {
         );
 
 
-    /*
-       Total time
-    */
+    let averageAccuracy = 0;
+
+
+    if (
+        totalCharacters > 0
+    ) {
+
+        averageAccuracy =
+            (
+                totalCorrectCharacters /
+                totalCharacters
+            ) * 100;
+
+    }
+
 
     const seconds =
         history.reduce(
@@ -2700,14 +3179,14 @@ function updateStatistics() {
         "statAccuracy"
     ).textContent =
         Math.round(
-            avgAccuracy
+            averageAccuracy
         ) + "%";
 
 
     document.getElementById(
         "statCharacters"
     ).textContent =
-        characters.toLocaleString();
+        totalCharacters.toLocaleString();
 
 
     document.getElementById(
@@ -2722,7 +3201,7 @@ function updateStatistics() {
 
 
 /* =====================================================
-   STATISTICS CHART
+   CHART
 ===================================================== */
 
 function drawStatisticsChart() {
@@ -2784,7 +3263,12 @@ function drawStatisticsChart() {
     ) {
 
         ctx.fillStyle =
-            "#666d7b";
+            getComputedStyle(
+                document.body
+            ).getPropertyValue(
+                "--muted"
+            );
+
 
         ctx.font =
             "13px Inter, sans-serif";
@@ -2802,10 +3286,6 @@ function drawStatisticsChart() {
 
     }
 
-
-    /*
-       Show oldest -> newest
-    */
 
     const data =
         [...history]
@@ -2829,15 +3309,32 @@ function drawStatisticsChart() {
     const padding = 30;
 
 
+    const styles =
+        getComputedStyle(
+            document.body
+        );
+
+
+    const borderColor =
+        styles.getPropertyValue(
+            "--border"
+        );
+
+
+    const accentColor =
+        styles.getPropertyValue(
+            "--accent"
+        );
+
+
     /*
-       Horizontal grid
+       Grid
     */
 
     ctx.strokeStyle =
-        "#292e38";
+        borderColor;
 
-    ctx.lineWidth =
-        1;
+    ctx.lineWidth = 1;
 
 
     for (
@@ -2874,7 +3371,7 @@ function drawStatisticsChart() {
 
 
     /*
-       WPM line
+       Line
     */
 
     ctx.beginPath();
@@ -2940,10 +3437,9 @@ function drawStatisticsChart() {
 
 
     ctx.strokeStyle =
-        "#8b7cff";
+        accentColor;
 
-    ctx.lineWidth =
-        3;
+    ctx.lineWidth = 3;
 
     ctx.stroke();
 
@@ -2999,7 +3495,7 @@ function drawStatisticsChart() {
             );
 
             ctx.fillStyle =
-                "#8b7cff";
+                accentColor;
 
             ctx.fill();
 
@@ -3043,6 +3539,7 @@ document
 
             history = [];
 
+
             localStorage.removeItem(
                 "typingHistory"
             );
@@ -3075,11 +3572,6 @@ document
                         link.dataset.page;
 
 
-                    /*
-                       Stop running test when
-                       leaving practice page.
-                    */
-
                     if (
                         page !== "practice" &&
                         running
@@ -3093,10 +3585,6 @@ document
 
                     }
 
-
-                    /*
-                       Remove active
-                    */
 
                     document
                         .querySelectorAll(
@@ -3115,10 +3603,6 @@ document
                     );
 
 
-                    /*
-                       Hide pages
-                    */
-
                     document
                         .querySelectorAll(
                             ".page"
@@ -3130,10 +3614,6 @@ document
                                 )
                         );
 
-
-                    /*
-                       Show selected page
-                    */
 
                     document
                         .getElementById(
@@ -3262,7 +3742,7 @@ document
 
 
 /* =====================================================
-   START
+   START BUTTON
 ===================================================== */
 
 startBtn.addEventListener(
@@ -3272,7 +3752,7 @@ startBtn.addEventListener(
 
 
 /* =====================================================
-   RESET
+   RESET BUTTON
 ===================================================== */
 
 resetBtn.addEventListener(
@@ -3292,7 +3772,7 @@ tryAgainBtn.addEventListener(
 
 
 /* =====================================================
-   TYPING AREA CLICK
+   TYPING AREA
 ===================================================== */
 
 typingArea.addEventListener(
@@ -3312,7 +3792,7 @@ typingArea.addEventListener(
 
 
 /* =====================================================
-   FOCUS STYLE
+   FOCUS
 ===================================================== */
 
 typingInput.addEventListener(
@@ -3340,16 +3820,12 @@ typingInput.addEventListener(
 
 
 /* =====================================================
-   KEYBOARD SHORTCUTS
+   SHORTCUTS
 ===================================================== */
 
 document.addEventListener(
     "keydown",
     event => {
-
-        /*
-           Tab
-        */
 
         if (
             event.key === "Tab"
@@ -3361,10 +3837,6 @@ document.addEventListener(
 
         }
 
-
-        /*
-           Escape
-        */
 
         if (
             event.key === "Escape"
@@ -3379,7 +3851,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   RESIZE CHART
+   RESIZE
 ===================================================== */
 
 window.addEventListener(
