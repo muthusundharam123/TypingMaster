@@ -1,0 +1,3422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TypeMaster - Typing Practice</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0d0f14;
+    --panel: #151821;
+    --panel2: #1b1f29;
+    --border: #292e38;
+
+    --text: #f2f4f8;
+    --muted: #858c9b;
+
+    --accent: #8b7cff;
+    --accent-dark: #6f61ff;
+
+    --green: #67d6a3;
+    --red: #ff6f7d;
+    --yellow: #f5c96b;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            rgba(139,124,255,0.10),
+            transparent 40%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+button {
+    font-family: inherit;
+}
+
+.app {
+    width: min(1180px, 94%);
+    margin: auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-link {
+    color: var(--muted);
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text);
+}
+
+.nav-link.active {
+    color: var(--accent);
+}
+
+.best-score {
+    padding: 8px 13px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+.best-score strong {
+    color: var(--yellow);
+    margin-left: 4px;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+main {
+    padding: 50px 0 80px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.top-title {
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.top-title h1 {
+    margin: 0;
+
+    font-size: 36px;
+
+    letter-spacing: -1.5px;
+}
+
+.top-title p {
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+/* =========================
+   LIVE STATS
+========================= */
+
+.live-stats {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 38px;
+
+    margin-bottom: 28px;
+}
+
+.live-stat {
+    text-align: center;
+    min-width: 90px;
+}
+
+.live-stat .value {
+    font-size: 31px;
+    font-weight: 750;
+}
+
+.live-stat .label {
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    letter-spacing: 1.2px;
+
+    color: var(--muted);
+
+    text-transform: uppercase;
+}
+
+.live-stat.primary .value {
+    color: var(--accent);
+}
+
+.stat-divider {
+    width: 1px;
+    height: 35px;
+
+    background: var(--border);
+}
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 22px;
+
+    margin-bottom: 28px;
+}
+
+.control {
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 4px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+}
+
+.pill {
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    padding: 8px 13px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.pill:hover {
+    color: var(--text);
+}
+
+.pill.active {
+    color: white;
+
+    background: var(--accent);
+
+    box-shadow:
+        0 4px 15px rgba(139,124,255,0.22);
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-track {
+    height: 3px;
+
+    width: 100%;
+
+    background: #222631;
+
+    border-radius: 20px;
+
+    margin-bottom: 30px;
+
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+
+    width: 0%;
+
+    background: var(--accent);
+
+    transition: width 0.15s linear;
+}
+
+/* =========================
+   TYPING AREA
+========================= */
+
+.typing-area {
+    position: relative;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    min-height: 310px;
+
+    padding: 42px 48px;
+
+    cursor: text;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.typing-area.focused {
+    border-color: rgba(139,124,255,0.5);
+
+    box-shadow:
+        0 0 0 1px rgba(139,124,255,0.08),
+        0 20px 60px rgba(0,0,0,0.15);
+}
+
+.text-display {
+    max-width: 1000px;
+
+    margin: auto;
+
+    font-size: 24px;
+
+    line-height: 1.9;
+
+    color: #505664;
+
+    user-select: none;
+}
+
+.text-display span {
+    position: relative;
+}
+
+.text-display span.correct {
+    color: var(--green);
+}
+
+.text-display span.incorrect {
+    color: var(--red);
+
+    background: rgba(255,111,125,0.10);
+}
+
+.text-display span.current {
+    color: #c6cad3;
+}
+
+.text-display span.current::before {
+    content: "";
+
+    position: absolute;
+
+    left: -2px;
+
+    top: 10%;
+
+    width: 2px;
+
+    height: 80%;
+
+    background: var(--accent);
+
+    animation: cursorBlink 1s infinite;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    45% {
+        opacity: 1;
+    }
+
+    46%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.start-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    pointer-events: none;
+
+    padding-bottom: 25px;
+}
+
+.start-hint {
+    color: #707786;
+
+    font-size: 12px;
+
+    background: rgba(13,15,20,0.75);
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+}
+
+#typingInput {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    width: 1px;
+
+    height: 1px;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 24px;
+}
+
+.primary-btn {
+    border: 0;
+
+    background: var(--accent);
+
+    color: white;
+
+    padding: 11px 23px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 650;
+}
+
+.primary-btn:hover {
+    background: var(--accent-dark);
+}
+
+.secondary-btn {
+    border: 1px solid var(--border);
+
+    background: var(--panel);
+
+    color: var(--muted);
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+.secondary-btn:hover {
+    color: var(--text);
+}
+
+/* =========================
+   SHORTCUTS
+========================= */
+
+.shortcuts {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #5f6674;
+
+    font-size: 11px;
+}
+
+kbd {
+    padding: 3px 6px;
+
+    border: 1px solid #303540;
+
+    border-radius: 4px;
+
+    background: #171a20;
+
+    color: #858c9b;
+
+    margin: 0 3px;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result {
+    display: none;
+
+    margin-top: 35px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 40px;
+
+    text-align: center;
+}
+
+.result.show {
+    display: block;
+}
+
+.result-title {
+    color: var(--muted);
+
+    text-transform: uppercase;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.result-wpm {
+    margin-top: 10px;
+
+    font-size: 76px;
+
+    font-weight: 800;
+
+    color: var(--accent);
+}
+
+.result-wpm small {
+    font-size: 18px;
+
+    color: var(--muted);
+}
+
+.personal-best {
+    display: none;
+
+    margin-top: 5px;
+
+    color: var(--yellow);
+
+    font-size: 12px;
+
+    font-weight: 650;
+}
+
+.personal-best.show {
+    display: block;
+}
+
+.result-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+
+    margin: 30px auto;
+
+    max-width: 700px;
+}
+
+.result-card {
+    background: var(--panel2);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 18px 10px;
+}
+
+.result-card strong {
+    display: block;
+
+    font-size: 21px;
+
+    margin-bottom: 5px;
+}
+
+.result-card span {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+}
+
+/* =========================
+   HISTORY
+========================= */
+
+.section-title {
+    margin-bottom: 8px;
+
+    font-size: 30px;
+
+    letter-spacing: -1px;
+}
+
+.section-subtitle {
+    margin-bottom: 30px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.history-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.history-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+}
+
+.history-table th,
+.history-table td {
+    padding: 15px;
+
+    border-bottom: 1px solid var(--border);
+
+    text-align: left;
+
+    font-size: 13px;
+}
+
+.history-table th {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    background: var(--panel2);
+}
+
+.history-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.history-wpm {
+    color: var(--accent);
+
+    font-weight: 700;
+}
+
+.history-accuracy {
+    color: var(--green);
+}
+
+.empty-state {
+    padding: 60px 20px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+}
+
+.danger-btn {
+    border: 1px solid rgba(255,111,125,0.3);
+
+    background: transparent;
+
+    color: var(--red);
+
+    padding: 8px 13px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+/* =========================
+   STATISTICS
+========================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 24px;
+}
+
+.stat-card .number {
+    font-size: 32px;
+
+    font-weight: 750;
+
+    color: var(--accent);
+}
+
+.stat-card .label {
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+.chart-container {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    margin-top: 20px;
+}
+
+.chart-title {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-bottom: 15px;
+}
+
+canvas {
+    width: 100%;
+
+    height: 300px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    color: #4e5562;
+
+    font-size: 11px;
+
+    padding-bottom: 30px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:750px) {
+
+    header {
+        height: 70px;
+    }
+
+    .nav {
+        gap: 12px;
+    }
+
+    .nav-link {
+        display: none;
+    }
+
+    main {
+        padding-top: 35px;
+    }
+
+    .top-title h1 {
+        font-size: 29px;
+    }
+
+    .live-stats {
+        gap: 12px;
+    }
+
+    .live-stat .value {
+        font-size: 23px;
+    }
+
+    .typing-area {
+        padding: 25px 20px;
+    }
+
+    .text-display {
+        font-size: 19px;
+
+        line-height: 1.8;
+    }
+
+    .result {
+        padding: 25px 15px;
+    }
+
+    .result-wpm {
+        font-size: 60px;
+    }
+
+    .result-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .history-table {
+        font-size: 11px;
+    }
+
+    .history-table th,
+    .history-table td {
+        padding: 10px 7px;
+    }
+}
+
+@media(max-width:450px) {
+
+    .best-score {
+        display: none;
+    }
+
+    .controls {
+        gap: 10px;
+    }
+
+    .control {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .live-stats {
+        gap: 5px;
+    }
+
+    .live-stat {
+        min-width: 65px;
+    }
+
+    .live-stat .value {
+        font-size: 20px;
+    }
+
+    .stat-divider {
+        height: 25px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+
+    <div class="logo">
+        Type<span>Master</span>
+    </div>
+
+    <nav class="nav">
+
+        <div
+            class="nav-link active"
+            data-page="practice">
+            Practice
+        </div>
+
+        <div
+            class="nav-link"
+            data-page="history">
+            History
+        </div>
+
+        <div
+            class="nav-link"
+            data-page="statistics">
+            Statistics
+        </div>
+
+        <div class="best-score">
+            Best
+            <strong id="bestScore">
+                0 WPM
+            </strong>
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- ==========================================
+     PRACTICE PAGE
+========================================== -->
+
+<div
+    id="practicePage"
+    class="page active">
+
+<main>
+
+<div class="top-title">
+
+    <h1>
+        Typing Practice
+    </h1>
+
+    <p>
+        Focus on accuracy. Speed will follow.
+    </p>
+
+</div>
+
+
+<!-- LIVE STATS -->
+
+<div class="live-stats">
+
+    <div class="live-stat primary">
+
+        <div
+            class="value"
+            id="wpm">
+            0
+        </div>
+
+        <div class="label">
+            WPM
+        </div>
+
+    </div>
+
+
+    <div class="stat-divider"></div>
+
+
+    <div class="live-stat">
+
+        <div
+            class="value"
+            id="accuracy">
+            100%
+        </div>
+
+        <div class="label">
+            Accuracy
+        </div>
+
+    </div>
+
+
+    <div class="stat-divider"></div>
+
+
+    <div class="live-stat">
+
+        <div
+            class="value"
+            id="mistakes">
+            0
+        </div>
+
+        <div class="label">
+            Mistakes
+        </div>
+
+    </div>
+
+
+    <div class="stat-divider"></div>
+
+
+    <div class="live-stat">
+
+        <div
+            class="value"
+            id="timer">
+            01:00
+        </div>
+
+        <div class="label">
+            Time
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CONTROLS -->
+
+<div class="controls">
+
+    <div class="control">
+
+        <button
+            class="pill"
+            data-duration="15">
+            15s
+        </button>
+
+        <button
+            class="pill"
+            data-duration="30">
+            30s
+        </button>
+
+        <button
+            class="pill active"
+            data-duration="60">
+            60s
+        </button>
+
+        <button
+            class="pill"
+            data-duration="120">
+            120s
+        </button>
+
+    </div>
+
+
+    <div class="control">
+
+        <button
+            class="pill"
+            data-difficulty="easy">
+            Easy
+        </button>
+
+        <button
+            class="pill active"
+            data-difficulty="medium">
+            Medium
+        </button>
+
+        <button
+            class="pill"
+            data-difficulty="hard">
+            Hard
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PROGRESS -->
+
+<div class="progress-track">
+
+    <div
+        class="progress-bar"
+        id="progress">
+    </div>
+
+</div>
+
+
+<!-- TYPING AREA -->
+
+<section
+    class="typing-area"
+    id="typingArea">
+
+    <div
+        class="text-display"
+        id="textDisplay">
+    </div>
+
+
+    <div
+        class="start-overlay"
+        id="startOverlay">
+
+        <div class="start-hint">
+            Click here and start typing
+        </div>
+
+    </div>
+
+
+    <textarea
+        id="typingInput"
+        spellcheck="false"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off">
+    </textarea>
+
+</section>
+
+
+<div class="actions">
+
+    <button
+        class="primary-btn"
+        id="startBtn">
+        Start Test
+    </button>
+
+    <button
+        class="secondary-btn"
+        id="resetBtn">
+        Reset
+    </button>
+
+</div>
+
+
+<div class="shortcuts">
+
+    <kbd>Tab</kbd>
+    Restart
+
+    <kbd>Esc</kbd>
+    Reset
+
+</div>
+
+
+<!-- RESULT -->
+
+<section
+    class="result"
+    id="result">
+
+    <div class="result-title">
+        Test Complete
+    </div>
+
+
+    <div class="result-wpm">
+
+        <span id="finalWpm">
+            0
+        </span>
+
+        <small>
+            WPM
+        </small>
+
+    </div>
+
+
+    <div
+        class="personal-best"
+        id="personalBest">
+        🏆 New Personal Best
+    </div>
+
+
+    <div class="result-grid">
+
+        <div class="result-card">
+
+            <strong id="finalAccuracy">
+                0%
+            </strong>
+
+            <span>
+                Accuracy
+            </span>
+
+        </div>
+
+
+        <div class="result-card">
+
+            <strong id="finalCorrect">
+                0
+            </strong>
+
+            <span>
+                Correct
+            </span>
+
+        </div>
+
+
+        <div class="result-card">
+
+            <strong id="finalMistakes">
+                0
+            </strong>
+
+            <span>
+                Mistakes
+            </span>
+
+        </div>
+
+
+        <div class="result-card">
+
+            <strong id="finalRawWpm">
+                0
+            </strong>
+
+            <span>
+                Raw WPM
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="primary-btn"
+        id="tryAgainBtn">
+        Try Again
+    </button>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- ==========================================
+     HISTORY PAGE
+========================================== -->
+
+<div
+    id="historyPage"
+    class="page">
+
+<main>
+
+<div class="section-title">
+    Practice History
+</div>
+
+<div class="section-subtitle">
+    Your previous typing sessions.
+</div>
+
+
+<div class="history-header">
+
+    <span
+        id="historyCount"
+        style="color:var(--muted);font-size:12px;">
+        0 tests
+    </span>
+
+    <button
+        class="danger-btn"
+        id="clearHistory">
+        Clear History
+    </button>
+
+</div>
+
+
+<div id="historyContainer">
+</div>
+
+</main>
+
+</div>
+
+
+<!-- ==========================================
+     STATISTICS PAGE
+========================================== -->
+
+<div
+    id="statisticsPage"
+    class="page">
+
+<main>
+
+<div class="section-title">
+    Statistics
+</div>
+
+<div class="section-subtitle">
+    Track your typing performance over time.
+</div>
+
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <div
+            class="number"
+            id="statTests">
+            0
+        </div>
+
+        <div class="label">
+            Tests Completed
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div
+            class="number"
+            id="statBest">
+            0
+        </div>
+
+        <div class="label">
+            Best WPM
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div
+            class="number"
+            id="statAverage">
+            0
+        </div>
+
+        <div class="label">
+            Average WPM
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div
+            class="number"
+            id="statAccuracy">
+            0%
+        </div>
+
+        <div class="label">
+            Average Accuracy
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div
+            class="number"
+            id="statCharacters">
+            0
+        </div>
+
+        <div class="label">
+            Total Characters
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div
+            class="number"
+            id="statTime">
+            0m
+        </div>
+
+        <div class="label">
+            Practice Time
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="chart-container">
+
+    <div class="chart-title">
+        WPM Progress
+    </div>
+
+    <canvas
+        id="statisticsChart">
+    </canvas>
+
+</div>
+
+</main>
+
+</div>
+
+
+<footer>
+
+    TypeMaster © 2026 · Built for better typing
+
+</footer>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   TEXT DATA
+===================================================== */
+
+const texts = {
+
+    easy: [
+
+        "The sun is bright and the sky is blue. I like to walk in the park every morning.",
+
+        "Learning to type faster can save a lot of time every day.",
+
+        "Practice makes progress. Keep typing and stay focused.",
+
+        "The quick brown fox jumps over the lazy dog.",
+
+        "Good typing skills help you work faster and communicate better."
+
+    ],
+
+    medium: [
+
+        "Modern software applications require clean architecture, reliable APIs, and efficient database operations.",
+
+        "Successful developers continuously learn new technologies and improve their problem solving skills.",
+
+        "A good user interface should be simple, responsive, accessible, and enjoyable to use.",
+
+        "Building consistent habits is more important than trying to become perfect overnight.",
+
+        "Strong communication and technical skills are important for successful software development."
+
+    ],
+
+    hard: [
+
+        "Distributed systems require careful consideration of concurrency, scalability, fault tolerance, observability, and eventual consistency.",
+
+        "Software engineering involves designing maintainable solutions while balancing performance, security, reliability, and business requirements.",
+
+        "Asynchronous programming allows applications to perform multiple operations efficiently without unnecessarily blocking execution threads.",
+
+        "Complex applications become easier to maintain when responsibilities are separated into well-defined components with clear interfaces.",
+
+        "Modern cloud applications require careful attention to scalability, containerization, authentication, monitoring, logging, and deployment automation."
+
+    ]
+
+};
+
+
+/* =====================================================
+   DOM
+===================================================== */
+
+const typingArea =
+    document.getElementById("typingArea");
+
+const typingInput =
+    document.getElementById("typingInput");
+
+const textDisplay =
+    document.getElementById("textDisplay");
+
+const startBtn =
+    document.getElementById("startBtn");
+
+const resetBtn =
+    document.getElementById("resetBtn");
+
+const tryAgainBtn =
+    document.getElementById("tryAgainBtn");
+
+const startOverlay =
+    document.getElementById("startOverlay");
+
+const timerElement =
+    document.getElementById("timer");
+
+const wpmElement =
+    document.getElementById("wpm");
+
+const accuracyElement =
+    document.getElementById("accuracy");
+
+const mistakesElement =
+    document.getElementById("mistakes");
+
+const progressElement =
+    document.getElementById("progress");
+
+const result =
+    document.getElementById("result");
+
+const finalWpm =
+    document.getElementById("finalWpm");
+
+const finalAccuracy =
+    document.getElementById("finalAccuracy");
+
+const finalCorrect =
+    document.getElementById("finalCorrect");
+
+const finalMistakes =
+    document.getElementById("finalMistakes");
+
+const finalRawWpm =
+    document.getElementById("finalRawWpm");
+
+const personalBest =
+    document.getElementById("personalBest");
+
+const bestScore =
+    document.getElementById("bestScore");
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let currentText = "";
+
+let duration = 60;
+
+let difficulty = "medium";
+
+let timeLeft = 60;
+
+let timer = null;
+
+let running = false;
+
+let startTime = null;
+
+let elapsedSeconds = 0;
+
+
+/*
+   Current passage
+*/
+
+let currentCorrect = 0;
+
+let currentMistakes = 0;
+
+
+/*
+   Entire test
+*/
+
+let totalCorrect = 0;
+
+let totalMistakes = 0;
+
+
+/*
+   History
+*/
+
+let history =
+    JSON.parse(
+        localStorage.getItem(
+            "typingHistory"
+        ) || "[]"
+    );
+
+
+/* =====================================================
+   BEST SCORE
+===================================================== */
+
+let bestWpm =
+    Number(
+        localStorage.getItem(
+            "typingBestWpm"
+        )
+    ) || 0;
+
+bestScore.textContent =
+    `${bestWpm} WPM`;
+
+
+/* =====================================================
+   FORMAT TIME
+===================================================== */
+
+function formatTime(seconds) {
+
+    seconds = Math.max(
+        0,
+        Math.ceil(seconds)
+    );
+
+    const minutes =
+        Math.floor(seconds / 60);
+
+    const secs =
+        seconds % 60;
+
+    return (
+        String(minutes).padStart(2, "0")
+        +
+        ":"
+        +
+        String(secs).padStart(2, "0")
+    );
+
+}
+
+
+/* =====================================================
+   GENERATE TEXT
+===================================================== */
+
+function generateText() {
+
+    const list =
+        texts[difficulty];
+
+    const index =
+        Math.floor(
+            Math.random() * list.length
+        );
+
+    currentText =
+        list[index];
+
+    renderText();
+
+}
+
+
+/* =====================================================
+   RENDER TEXT
+===================================================== */
+
+function renderText() {
+
+    textDisplay.innerHTML = "";
+
+    currentText
+        .split("")
+        .forEach(
+            (char, index) => {
+
+                const span =
+                    document.createElement("span");
+
+                span.textContent =
+                    char;
+
+                if (index === 0) {
+
+                    span.classList.add(
+                        "current"
+                    );
+
+                }
+
+                textDisplay.appendChild(
+                    span
+                );
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   RESET UI
+===================================================== */
+
+function resetUI() {
+
+    clearInterval(timer);
+
+    running = false;
+
+    startTime = null;
+
+    elapsedSeconds = 0;
+
+    currentCorrect = 0;
+
+    currentMistakes = 0;
+
+    totalCorrect = 0;
+
+    totalMistakes = 0;
+
+    timeLeft = duration;
+
+    timerElement.textContent =
+        formatTime(timeLeft);
+
+    wpmElement.textContent =
+        "0";
+
+    accuracyElement.textContent =
+        "100%";
+
+    mistakesElement.textContent =
+        "0";
+
+    progressElement.style.width =
+        "0%";
+
+    typingInput.value = "";
+
+    result.classList.remove(
+        "show"
+    );
+
+    personalBest.classList.remove(
+        "show"
+    );
+
+    startOverlay.style.display =
+        "flex";
+
+    startBtn.textContent =
+        "Start Test";
+
+    generateText();
+
+}
+
+
+/* =====================================================
+   START TEST
+===================================================== */
+
+function startTest() {
+
+    clearInterval(timer);
+
+    result.classList.remove(
+        "show"
+    );
+
+    personalBest.classList.remove(
+        "show"
+    );
+
+    running = true;
+
+    startTime = Date.now();
+
+    elapsedSeconds = 0;
+
+    currentCorrect = 0;
+
+    currentMistakes = 0;
+
+    totalCorrect = 0;
+
+    totalMistakes = 0;
+
+    timeLeft = duration;
+
+    timerElement.textContent =
+        formatTime(timeLeft);
+
+    wpmElement.textContent =
+        "0";
+
+    accuracyElement.textContent =
+        "100%";
+
+    mistakesElement.textContent =
+        "0";
+
+    progressElement.style.width =
+        "0%";
+
+    typingInput.value = "";
+
+    startOverlay.style.display =
+        "none";
+
+    startBtn.textContent =
+        "Running...";
+
+    generateText();
+
+    typingInput.focus();
+
+    timer =
+        setInterval(
+            updateTimer,
+            100
+        );
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+function updateTimer() {
+
+    if (!running) {
+        return;
+    }
+
+    elapsedSeconds =
+        (
+            Date.now() -
+            startTime
+        ) / 1000;
+
+    timeLeft =
+        Math.max(
+            0,
+            duration -
+            elapsedSeconds
+        );
+
+    timerElement.textContent =
+        formatTime(timeLeft);
+
+
+    const percentage =
+        (
+            elapsedSeconds /
+            duration
+        ) * 100;
+
+    progressElement.style.width =
+        Math.min(
+            100,
+            percentage
+        ) + "%";
+
+
+    updateStats();
+
+
+    if (timeLeft <= 0) {
+
+        finishTest();
+
+    }
+
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+typingInput.addEventListener(
+    "input",
+    handleInput
+);
+
+
+function handleInput() {
+
+    if (!running) {
+        return;
+    }
+
+    const typed =
+        typingInput.value;
+
+    currentCorrect = 0;
+
+    currentMistakes = 0;
+
+    const spans =
+        textDisplay.querySelectorAll(
+            "span"
+        );
+
+
+    spans.forEach(
+        (span, index) => {
+
+            span.classList.remove(
+                "correct",
+                "incorrect",
+                "current"
+            );
+
+
+            if (
+                index <
+                typed.length
+            ) {
+
+                if (
+                    typed[index] ===
+                    currentText[index]
+                ) {
+
+                    span.classList.add(
+                        "correct"
+                    );
+
+                    currentCorrect++;
+
+                }
+                else {
+
+                    span.classList.add(
+                        "incorrect"
+                    );
+
+                    currentMistakes++;
+
+                }
+
+            }
+
+        }
+    );
+
+
+    if (
+        typed.length <
+        currentText.length
+    ) {
+
+        spans[
+            typed.length
+        ].classList.add(
+            "current"
+        );
+
+    }
+
+
+    updateStats();
+
+
+    /*
+       If current passage finished,
+       add it to the total.
+    */
+
+    if (
+        typed.length >=
+        currentText.length
+    ) {
+
+        totalCorrect +=
+            currentCorrect;
+
+        totalMistakes +=
+            currentMistakes;
+
+        currentCorrect = 0;
+
+        currentMistakes = 0;
+
+        typingInput.value = "";
+
+        generateText();
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE STATS
+===================================================== */
+
+function updateStats() {
+
+    if (!startTime) {
+        return;
+    }
+
+    const correct =
+        totalCorrect +
+        currentCorrect;
+
+    const mistakes =
+        totalMistakes +
+        currentMistakes;
+
+    const characters =
+        correct +
+        mistakes;
+
+
+    const minutes =
+        elapsedSeconds / 60;
+
+
+    let wpm = 0;
+
+    let rawWpm = 0;
+
+
+    if (minutes > 0) {
+
+        /*
+           Standard WPM:
+
+           Correct characters / 5 / minutes
+        */
+
+        wpm =
+            (
+                correct / 5
+            ) /
+            minutes;
+
+
+        /*
+           Raw WPM:
+
+           All typed characters / 5 / minutes
+        */
+
+        rawWpm =
+            (
+                characters / 5
+            ) /
+            minutes;
+
+    }
+
+
+    let accuracy = 100;
+
+
+    if (characters > 0) {
+
+        accuracy =
+            (
+                correct /
+                characters
+            ) *
+            100;
+
+    }
+
+
+    wpmElement.textContent =
+        Math.round(wpm);
+
+    accuracyElement.textContent =
+        Math.round(accuracy) + "%";
+
+    mistakesElement.textContent =
+        mistakes;
+
+}
+
+
+/* =====================================================
+   FINISH TEST
+===================================================== */
+
+function finishTest() {
+
+    if (!running) {
+        return;
+    }
+
+    running = false;
+
+    clearInterval(timer);
+
+
+    elapsedSeconds =
+        Math.min(
+            duration,
+            (
+                Date.now() -
+                startTime
+            ) / 1000
+        );
+
+
+    /*
+       Include currently typed passage.
+    */
+
+    totalCorrect +=
+        currentCorrect;
+
+    totalMistakes +=
+        currentMistakes;
+
+
+    const totalCharacters =
+        totalCorrect +
+        totalMistakes;
+
+
+    const minutes =
+        elapsedSeconds / 60;
+
+
+    let wpm = 0;
+
+    let rawWpm = 0;
+
+
+    if (minutes > 0) {
+
+        wpm =
+            (
+                totalCorrect / 5
+            ) /
+            minutes;
+
+
+        rawWpm =
+            (
+                totalCharacters / 5
+            ) /
+            minutes;
+
+    }
+
+
+    let accuracy = 100;
+
+
+    if (totalCharacters > 0) {
+
+        accuracy =
+            (
+                totalCorrect /
+                totalCharacters
+            ) *
+            100;
+
+    }
+
+
+    const roundedWpm =
+        Math.round(wpm);
+
+    const roundedRawWpm =
+        Math.round(rawWpm);
+
+    const roundedAccuracy =
+        Math.round(accuracy);
+
+
+    /*
+       RESULT
+    */
+
+    finalWpm.textContent =
+        roundedWpm;
+
+    finalAccuracy.textContent =
+        roundedAccuracy + "%";
+
+    finalCorrect.textContent =
+        totalCorrect;
+
+    finalMistakes.textContent =
+        totalMistakes;
+
+    finalRawWpm.textContent =
+        roundedRawWpm;
+
+
+    /*
+       Save history
+    */
+
+    saveHistory({
+        date: new Date().toISOString(),
+
+        wpm: roundedWpm,
+
+        rawWpm: roundedRawWpm,
+
+        accuracy: roundedAccuracy,
+
+        correct: totalCorrect,
+
+        mistakes: totalMistakes,
+
+        characters: totalCharacters,
+
+        duration: duration,
+
+        difficulty: difficulty,
+
+        time: Math.round(
+            elapsedSeconds
+        )
+    });
+
+
+    /*
+       Best WPM
+    */
+
+    if (
+        roundedWpm >
+        bestWpm
+    ) {
+
+        bestWpm =
+            roundedWpm;
+
+        localStorage.setItem(
+            "typingBestWpm",
+            bestWpm
+        );
+
+        bestScore.textContent =
+            `${bestWpm} WPM`;
+
+        personalBest.classList.add(
+            "show"
+        );
+
+    }
+
+
+    startBtn.textContent =
+        "Start Test";
+
+    startOverlay.style.display =
+        "flex";
+
+
+    result.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   SAVE HISTORY
+===================================================== */
+
+function saveHistory(test) {
+
+    history.unshift(test);
+
+    /*
+       Keep last 100 tests.
+    */
+
+    history =
+        history.slice(
+            0,
+            100
+        );
+
+    localStorage.setItem(
+        "typingHistory",
+        JSON.stringify(history)
+    );
+
+}
+
+
+/* =====================================================
+   RENDER HISTORY
+===================================================== */
+
+function renderHistory() {
+
+    const container =
+        document.getElementById(
+            "historyContainer"
+        );
+
+    const count =
+        document.getElementById(
+            "historyCount"
+        );
+
+
+    count.textContent =
+        `${history.length} ${
+            history.length === 1
+                ? "test"
+                : "tests"
+        }`;
+
+
+    if (
+        history.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty-state">
+
+                <div
+                    style="
+                        font-size:30px;
+                        margin-bottom:10px;
+                    ">
+                    ⌨
+                </div>
+
+                No typing tests yet.
+
+                <br>
+
+                Complete your first test
+                to see your history.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <table class="history-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>WPM</th>
+
+                    <th>Accuracy</th>
+
+                    <th>Correct</th>
+
+                    <th>Mistakes</th>
+
+                    <th>Mode</th>
+
+                    <th>Difficulty</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+    `;
+
+
+    history.forEach(
+        test => {
+
+            const date =
+                new Date(
+                    test.date
+                );
+
+
+            html += `
+
+                <tr>
+
+                    <td>
+                        ${formatDate(date)}
+                    </td>
+
+                    <td>
+                        <span
+                            class="history-wpm">
+                            ${test.wpm}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span
+                            class="history-accuracy">
+                            ${test.accuracy}%
+                        </span>
+                    </td>
+
+                    <td>
+                        ${test.correct}
+                    </td>
+
+                    <td>
+                        ${test.mistakes}
+                    </td>
+
+                    <td>
+                        ${test.duration}s
+                    </td>
+
+                    <td>
+                        ${capitalize(
+                            test.difficulty
+                        )}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(date) {
+
+    return date.toLocaleString(
+        undefined,
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CAPITALIZE
+===================================================== */
+
+function capitalize(value) {
+
+    return (
+        value.charAt(0).toUpperCase()
+        +
+        value.slice(1)
+    );
+
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+function updateStatistics() {
+
+    const tests =
+        history.length;
+
+
+    document.getElementById(
+        "statTests"
+    ).textContent =
+        tests;
+
+
+    if (tests === 0) {
+
+        document.getElementById(
+            "statBest"
+        ).textContent =
+            "0";
+
+        document.getElementById(
+            "statAverage"
+        ).textContent =
+            "0";
+
+        document.getElementById(
+            "statAccuracy"
+        ).textContent =
+            "0%";
+
+        document.getElementById(
+            "statCharacters"
+        ).textContent =
+            "0";
+
+        document.getElementById(
+            "statTime"
+        ).textContent =
+            "0m";
+
+        drawStatisticsChart();
+
+        return;
+
+    }
+
+
+    /*
+       Best WPM
+    */
+
+    const best =
+        Math.max(
+            ...history.map(
+                x => x.wpm
+            )
+        );
+
+
+    /*
+       Average WPM
+    */
+
+    const average =
+        history.reduce(
+            (
+                sum,
+                x
+            ) =>
+                sum + x.wpm,
+            0
+        ) / tests;
+
+
+    /*
+       Average accuracy
+    */
+
+    const avgAccuracy =
+        history.reduce(
+            (
+                sum,
+                x
+            ) =>
+                sum + x.accuracy,
+            0
+        ) / tests;
+
+
+    /*
+       Total characters
+    */
+
+    const characters =
+        history.reduce(
+            (
+                sum,
+                x
+            ) =>
+                sum + x.characters,
+            0
+        );
+
+
+    /*
+       Total time
+    */
+
+    const seconds =
+        history.reduce(
+            (
+                sum,
+                x
+            ) =>
+                sum + x.time,
+            0
+        );
+
+
+    const minutes =
+        Math.round(
+            seconds / 60
+        );
+
+
+    document.getElementById(
+        "statBest"
+    ).textContent =
+        Math.round(best);
+
+
+    document.getElementById(
+        "statAverage"
+    ).textContent =
+        Math.round(average);
+
+
+    document.getElementById(
+        "statAccuracy"
+    ).textContent =
+        Math.round(
+            avgAccuracy
+        ) + "%";
+
+
+    document.getElementById(
+        "statCharacters"
+    ).textContent =
+        characters.toLocaleString();
+
+
+    document.getElementById(
+        "statTime"
+    ).textContent =
+        minutes + "m";
+
+
+    drawStatisticsChart();
+
+}
+
+
+/* =====================================================
+   STATISTICS CHART
+===================================================== */
+
+function drawStatisticsChart() {
+
+    const canvas =
+        document.getElementById(
+            "statisticsChart"
+        );
+
+    const ctx =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    const ratio =
+        window.devicePixelRatio ||
+        1;
+
+
+    canvas.width =
+        rect.width * ratio;
+
+    canvas.height =
+        300 * ratio;
+
+
+    ctx.setTransform(
+        ratio,
+        0,
+        0,
+        ratio,
+        0,
+        0
+    );
+
+
+    const width =
+        rect.width;
+
+    const height =
+        300;
+
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    if (
+        history.length === 0
+    ) {
+
+        ctx.fillStyle =
+            "#666d7b";
+
+        ctx.font =
+            "13px Inter, sans-serif";
+
+        ctx.textAlign =
+            "center";
+
+        ctx.fillText(
+            "Complete typing tests to see your progress.",
+            width / 2,
+            height / 2
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Show oldest -> newest
+    */
+
+    const data =
+        [...history]
+            .reverse()
+            .slice(-30);
+
+
+    const values =
+        data.map(
+            x => x.wpm
+        );
+
+
+    const max =
+        Math.max(
+            ...values,
+            10
+        );
+
+
+    const padding = 30;
+
+
+    /*
+       Horizontal grid
+    */
+
+    ctx.strokeStyle =
+        "#292e38";
+
+    ctx.lineWidth =
+        1;
+
+
+    for (
+        let i = 1;
+        i <= 4;
+        i++
+    ) {
+
+        const y =
+            padding +
+            (
+                (
+                    height -
+                    padding * 2
+                ) / 4
+            ) * i;
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            0,
+            y
+        );
+
+        ctx.lineTo(
+            width,
+            y
+        );
+
+        ctx.stroke();
+
+    }
+
+
+    /*
+       WPM line
+    */
+
+    ctx.beginPath();
+
+
+    values.forEach(
+        (
+            value,
+            index
+        ) => {
+
+            const x =
+                padding +
+                (
+                    index /
+                    Math.max(
+                        1,
+                        values.length - 1
+                    )
+                )
+                *
+                (
+                    width -
+                    padding * 2
+                );
+
+
+            const y =
+                height -
+                padding -
+                (
+                    value /
+                    max
+                )
+                *
+                (
+                    height -
+                    padding * 2
+                );
+
+
+            if (
+                index === 0
+            ) {
+
+                ctx.moveTo(
+                    x,
+                    y
+                );
+
+            }
+            else {
+
+                ctx.lineTo(
+                    x,
+                    y
+                );
+
+            }
+
+        }
+    );
+
+
+    ctx.strokeStyle =
+        "#8b7cff";
+
+    ctx.lineWidth =
+        3;
+
+    ctx.stroke();
+
+
+    /*
+       Points
+    */
+
+    values.forEach(
+        (
+            value,
+            index
+        ) => {
+
+            const x =
+                padding +
+                (
+                    index /
+                    Math.max(
+                        1,
+                        values.length - 1
+                    )
+                )
+                *
+                (
+                    width -
+                    padding * 2
+                );
+
+
+            const y =
+                height -
+                padding -
+                (
+                    value /
+                    max
+                )
+                *
+                (
+                    height -
+                    padding * 2
+                );
+
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                4,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle =
+                "#8b7cff";
+
+            ctx.fill();
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CLEAR HISTORY
+===================================================== */
+
+document
+    .getElementById(
+        "clearHistory"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            if (
+                history.length === 0
+            ) {
+
+                return;
+
+            }
+
+
+            const confirmed =
+                confirm(
+                    "Clear all typing history?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            history = [];
+
+            localStorage.removeItem(
+                "typingHistory"
+            );
+
+
+            renderHistory();
+
+            updateStatistics();
+
+        }
+    );
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+document
+    .querySelectorAll(
+        ".nav-link"
+    )
+    .forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    const page =
+                        link.dataset.page;
+
+
+                    /*
+                       Stop running test when
+                       leaving practice page.
+                    */
+
+                    if (
+                        page !== "practice" &&
+                        running
+                    ) {
+
+                        clearInterval(
+                            timer
+                        );
+
+                        running = false;
+
+                    }
+
+
+                    /*
+                       Remove active
+                    */
+
+                    document
+                        .querySelectorAll(
+                            ".nav-link"
+                        )
+                        .forEach(
+                            x =>
+                                x.classList.remove(
+                                    "active"
+                                )
+                        );
+
+
+                    link.classList.add(
+                        "active"
+                    );
+
+
+                    /*
+                       Hide pages
+                    */
+
+                    document
+                        .querySelectorAll(
+                            ".page"
+                        )
+                        .forEach(
+                            x =>
+                                x.classList.remove(
+                                    "active"
+                                )
+                        );
+
+
+                    /*
+                       Show selected page
+                    */
+
+                    document
+                        .getElementById(
+                            page +
+                            "Page"
+                        )
+                        .classList.add(
+                            "active"
+                        );
+
+
+                    if (
+                        page === "history"
+                    ) {
+
+                        renderHistory();
+
+                    }
+
+
+                    if (
+                        page === "statistics"
+                    ) {
+
+                        updateStatistics();
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   DURATION
+===================================================== */
+
+document
+    .querySelectorAll(
+        "[data-duration]"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .querySelectorAll(
+                            "[data-duration]"
+                        )
+                        .forEach(
+                            x =>
+                                x.classList.remove(
+                                    "active"
+                                )
+                        );
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    duration =
+                        Number(
+                            button.dataset.duration
+                        );
+
+
+                    resetUI();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   DIFFICULTY
+===================================================== */
+
+document
+    .querySelectorAll(
+        "[data-difficulty]"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .querySelectorAll(
+                            "[data-difficulty]"
+                        )
+                        .forEach(
+                            x =>
+                                x.classList.remove(
+                                    "active"
+                                )
+                        );
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    difficulty =
+                        button.dataset.difficulty;
+
+
+                    resetUI();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   START
+===================================================== */
+
+startBtn.addEventListener(
+    "click",
+    startTest
+);
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+resetBtn.addEventListener(
+    "click",
+    resetUI
+);
+
+
+/* =====================================================
+   TRY AGAIN
+===================================================== */
+
+tryAgainBtn.addEventListener(
+    "click",
+    startTest
+);
+
+
+/* =====================================================
+   TYPING AREA CLICK
+===================================================== */
+
+typingArea.addEventListener(
+    "click",
+    () => {
+
+        if (!running) {
+
+            startTest();
+
+        }
+
+        typingInput.focus();
+
+    }
+);
+
+
+/* =====================================================
+   FOCUS STYLE
+===================================================== */
+
+typingInput.addEventListener(
+    "focus",
+    () => {
+
+        typingArea.classList.add(
+            "focused"
+        );
+
+    }
+);
+
+
+typingInput.addEventListener(
+    "blur",
+    () => {
+
+        typingArea.classList.remove(
+            "focused"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   KEYBOARD SHORTCUTS
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        /*
+           Tab
+        */
+
+        if (
+            event.key === "Tab"
+        ) {
+
+            event.preventDefault();
+
+            startTest();
+
+        }
+
+
+        /*
+           Escape
+        */
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            resetUI();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   RESIZE CHART
+===================================================== */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        const statisticsPage =
+            document.getElementById(
+                "statisticsPage"
+            );
+
+
+        if (
+            statisticsPage.classList.contains(
+                "active"
+            )
+        ) {
+
+            drawStatisticsChart();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+resetUI();
+
+renderHistory();
+
+updateStatistics();
+
+</script>
+
+</body>
+</html>
